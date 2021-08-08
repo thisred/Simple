@@ -1,0 +1,36 @@
+<div class="te">
+    <div id="content_header">
+        <div class="header_img">
+            <a href="/index">
+                <img src="<%- theme.head_img %>" alt="" class="head">
+            </a>
+        </div>
+        <div class="blog_create">
+            <%- config.subtitle %>  | 
+            <%- config.description %>
+        </div>
+    </div>
+
+    <% site.posts.forEach(function(post){ %>
+        <div class="post">
+            <div class="content">
+                <a href="/<%- post.path %>">
+                    <div class="post_name">
+                        <%- post.title %>
+                    </div>
+                </a>
+
+                <div class="content_bg">
+                    <%- post.excerpt %>
+                </div>
+                <div class="post_time">
+                    <%- date(post.date, "YYYY-MM-DD HH:MM" ) %>
+                </div>
+                <div class="readmore">
+                    <a href="/<%- post.path %>">查看全文</a>
+                </div>
+            </div>
+            <br>
+        </div>
+        <% }); %>
+</div>

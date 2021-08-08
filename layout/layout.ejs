@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%-config.title%> <%-page.title%></title>
+    <meta data-react-helmet="true" name="keywords" content="<%-config.keywords%>">
+    <link rel="apple-touch-icon-precomposed" href="https://gss0.bdstatic.com/5bd1bjqh_Q23odCf/static/wiseindex/img/screen_icon_new.png">
+    <link rel="shortcut icon" href="https://gss0.bdstatic.com/5bd1bjqh_Q23odCf/static/wiseindex/img/favicon64.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+        }
+
+        #content_header {
+            margin: 0px auto;
+            display: block;
+            padding: 50px 0 0 0;
+        }
+
+        img {
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0065b3;
+        }
+
+        .head {
+            border-radius: 50%;
+            margin: 0px auto;
+            width: 100px;
+        }
+
+        .header_img {
+            width: max-content;
+            margin: 0 auto;
+        }
+
+        .te {
+            margin: 0 auto;
+            width: 720px;
+            height: auto;
+            min-height: 720px;
+            background-color: rgb(0, 204, 255);
+        }
+
+
+        @media(max-width:600px) {
+            .te {
+                width: 100%;
+                background-color: rgb(0, 204, 255) !important;
+            }
+
+            .content {
+                padding: 20px 10px 0 10px !important;
+            }
+
+            .content_bg {
+                padding: 0 0 0 0 !important;
+                border-left: 10px !important;
+                border-right: 10px !important;
+            }
+        }
+
+        /*小 */
+        @media(max-width:320px) {
+            .te {
+                margin: 0 auto;
+                width: 320px;
+                background-color: rgb(0, 204, 255);
+            }
+        }
+
+        /* 兼容ipad横屏 ： */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+            .te {
+                margin: 0 auto;
+                width: 720px;
+                height: 720px;
+                background-color: rgb(0, 204, 255);
+            }
+
+            .content {
+                padding: 20px 10px 0 10px;
+            }
+
+            .content_bg {
+                padding: 0 0 0 0 !important;
+                border-left: 10px !important;
+                border-right: 10px !important;
+            }
+        }
+
+        /* 兼容ipad竖屏 ： */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+            .te {
+                margin: 0 auto;
+                width: 720px;
+                height: 720px;
+                background-color: rgb(0, 204, 255);
+            }
+
+            .content {
+                padding: 20px 10px 0 10px;
+            }
+
+            .content_bg {
+                padding: 0 0 0 0 !important;
+                border-left: 10px !important;
+                border-right: 10px !important;
+            }
+        }
+
+        .content {
+            padding: 20px;
+            background-color: azure;
+        }
+
+        .content_bg {
+            background-color: azure;
+            padding: 0 10px 0 10px;
+            border-left: 10px;
+            border-right: 10px;
+            height: 100%;
+        }
+
+        .blog_create {
+            padding: 10px;
+            text-align: center;
+            height: 20px;
+        }
+
+        .post_name {
+            padding: 10px;
+            text-align: center;
+            font-size: large;
+            font-weight: bolder;
+        }
+
+        .post_time {
+            text-align: right;
+            font-size: small;
+        }
+
+        .readmore {
+            text-align: center;
+        }
+
+
+
+        #footer {
+            background: #262a30;
+            padding: 50px 0;
+            border-top: 1px solid #ddd;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+    <%- partial('header')%>
+    <%- body %>
+    <%- partial('footer')%>
+</body>
+
+</html>
