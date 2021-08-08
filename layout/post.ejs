@@ -1,0 +1,26 @@
+
+    <div class="te">
+        <div id="content_header">
+            <div class="header_img">
+                <a href="/index">
+                    <img src="<%- theme.head_img %>" alt="" class="head">
+                </a>
+            </div>
+            <div class="blog_create">
+                <%- config.author%>
+            </div>
+        </div>
+        <div class="content">
+            <div class="post_name">
+                <%- page.title%>
+            </div>
+            <div class="content_bg">
+                <%- page.content %>
+            </div>
+            <div class="post_time">
+                <%- date(page.date, "YYYY年MM月DD日 HH:MM" )%>
+            </div>
+        </div>
+
+    </div>
+

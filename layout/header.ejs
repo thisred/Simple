@@ -1,0 +1,31 @@
+<header id="header">
+    <style>
+        #header-outer {
+            flex: auto;
+
+        }
+        #header-inner{
+            margin: auto 0;
+            padding: 10px;
+        }
+        #header-title{
+            display: inherit;
+        }
+    </style>
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <h1 id="logo-wrap">
+                <a href="/" id="logo"><%-config.title%></a>
+            </h1>
+        </div>
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <a class="main-nav-link" href="/">Home</a>
+                <% if (theme.links.github) { %>
+                    <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
+                    <% } %>
+
+            </nav>
+        </div>
+    </div>
+</header>
