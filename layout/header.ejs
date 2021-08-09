@@ -1,31 +1,43 @@
-<header id="header">
-    <style>
-        #header-outer {
-            flex: auto;
+<div class="te">
+    <header id="header">
+        <style>
+            #header{
+                background-color: white;
+            }
+            #header-outer {
+                flex: auto;
 
-        }
-        #header-inner{
-            margin: auto 0;
-            padding: 10px;
-        }
-        #header-title{
-            display: inherit;
-        }
-    </style>
-    <div id="header-outer" class="outer">
-        <div id="header-title" class="inner">
-            <h1 id="logo-wrap">
-                <a href="/" id="logo"><%-config.title%></a>
-            </h1>
-        </div>
-        <div id="header-inner" class="inner">
-            <nav id="main-nav">
-                <a class="main-nav-link" href="/">Home</a>
-                <% if (theme.links.github) { %>
-                    <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
-                    <% } %>
+            }
 
-            </nav>
+            #header-inner {
+                margin: auto 0;
+                padding: 10px;
+            }
+
+            #header-title {
+                display: inherit;
+            }
+            #logo-wrap{
+                font-size: 24px;
+                font-weight: 800;
+            }
+        </style>
+        <div id="header-outer" class="outer">
+            <div id="header-title" class="inner">
+                <div id="logo-wrap" >
+                    <a href="/" id="logo">
+                        <%-config.title%>
+                    </a>
+                </div>
+            </div>
+            <div id="header-inner" class="inner">
+                <nav id="main-nav">
+                    <a class="main-nav-link" href="/">Home</a>
+                    <% if (theme.links.github) { %>
+                        <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
+                        <% } %>
+
+                </nav>
+            </div>
         </div>
-    </div>
-</header>
+    </header>
