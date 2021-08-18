@@ -8,4 +8,9 @@ menus:
 
 head_img: http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg
 links:
-  github: https://github.com
+  github: https://github.com/thisred
+  qqgroup: https://qm.qq.com/cgi-bin/qm/qr?k=pT1Puvb_7GYijt_sdIjYTclo6q5Z8QXY&jump_from=webapi
+
+background_color : "#f6f6f6"
+content_color : "white"
+footer_color : 

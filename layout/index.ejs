@@ -1,15 +1,15 @@
-    <div id="content_header">
-        <div class="header_img">
-            <a href="/index">
-                <img src="<%- theme.head_img %>" alt="" class="head">
-            </a>
-        </div>
-        <div class="blog_create">
-            <%- config.subtitle %>  | 
-            <%- config.description %>
-        </div>
+<div id="content_header">
+    <div class="header_img">
+        <a href="/index">
+            <img src="<%- theme.head_img %>" alt="" class="head">
+        </a>
     </div>
-
+    <div class="blog_create">
+        <%- config.subtitle %> |
+            <%- config.description %>
+    </div>
+</div>
+<div class="posts">
     <% site.posts.forEach(function(post){ %>
         <div class="post">
             <div class="content">
@@ -23,7 +23,7 @@
                     <%- post.excerpt %>
                 </div>
                 <div class="post_time">
-                    <%- date(post.date, "YYYY-MM-DD HH:MM" ) %>
+                    <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
                 </div>
                 <div class="readmore">
                     <a href="/<%- post.path %>">查看全文</a>
@@ -32,3 +32,4 @@
             <br>
         </div>
         <% }); %>
+</div>
