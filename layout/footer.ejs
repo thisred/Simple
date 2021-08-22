@@ -2,12 +2,20 @@
     <style>
         .outer {
             text-align: center;
+            font-size: 14px;
+            margin: 5px 0;
         }
     </style>
     <div class="outer">
         <div id="footer-info" class="inner">
-            &copy; <%= date(new Date(), 'YYYY' ) %>
-                <%= config.author || config.title %>
+            <div>
+                &copy;
+                <%= date(new Date(), 'YYYY' ) %>
+                    <%= config.author || config.title %>
+            </div>
+            <div>
+                Theme By <a href="https://github.com/thisred/mytheme">myTheme</a> | Powered By Hexo
+            </div>
         </div>
     </div>
 </footer>

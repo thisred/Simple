@@ -14,3 +14,5 @@ links:
 background_color : "#f6f6f6"
 content_color : "white"
 footer_color : 
+header_color : 
+a_color : "#0065b3"

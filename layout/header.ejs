@@ -3,26 +3,63 @@
         <header id="header">
             <style>
                 #header {
-                    background-color: white;
+                    background-color: <%=theme.header_color%>;
                 }
-
+                
                 #header-outer {
                     flex: auto;
-
+                    -webkit-box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+                    box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
                 }
-
+                
                 #header-inner {
                     margin: auto 0;
                     padding: 10px;
                 }
-
+                
+                #header-inner a {
+                    padding: 10px;
+                }
+                
                 #header-title {
                     display: inherit;
                 }
-
+                
                 #logo-wrap {
                     font-size: 24px;
                     font-weight: 800;
+                }
+                
+                #content_header {
+                    margin: 0px auto;
+                    display: block;
+                    margin: 50px 0 0 0;
+                }
+                
+                .head {
+                    border-radius: 50%;
+                    width: 72px;
+                    height: 72px;
+                    transition: .3s ease;
+                    position: absolute;
+                    margin: auto;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                }
+                
+                .header_img {
+                    width: max-content;
+                    margin: 0 auto;
+                    height: 100px;
+                    width: 100px;
+                    position: relative;
+                }
+                
+                .head:hover {
+                    width: 100px;
+                    height: 100px;
                 }
             </style>
             <div id="header-outer" class="outer">
@@ -35,15 +72,31 @@
                 </div>
                 <div id="header-inner" class="inner">
                     <nav id="main-nav">
-                        <a class="main-nav-link" href="/">Home</a>
-                        <% if (theme.links.github) { %>
-                            <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
+                        <% if (theme.menus.主页) { %>
+                            <a class="main-nav-link" href="<%= theme.menus.主页 %>">Home</a>
                             <% } %>
-                                <% if (theme.links.github) { %>
-                                    <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQGroup</a>
+                                <% if (theme.menus.关于) { %>
+                                    <a class="main-nav-link" href="<%= theme.menus.关于 %>">About</a>
                                     <% } %>
+                                        <% if (theme.links.github) { %>
+                                            <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
+                                            <% } %>
+                                                <% if (theme.links.github) { %>
+                                                    <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQGroup</a>
+                                                    <% } %>
 
                     </nav>
+                </div>
+            </div>
+            <div id="content_header">
+                <div class="header_img">
+                    <a href="/">
+                        <img src="<%- theme.head_img %>" alt="" class="head">
+                    </a>
+                </div>
+                <div class="blog_create">
+                    <%- config.subtitle %> |
+                        <%- config.description %>
                 </div>
             </div>
         </header>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%-config.language%>">
 
 <head>
     <meta charset="UTF-8">
@@ -7,13 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         <%-config.title%>
-        <%-page.title%>
+            <%-page.title%>
     </title>
     <meta data-react-helmet="true" name="keywords" content="<%-config.keywords%>">
-    <link rel="apple-touch-icon-precomposed"
-    href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg">
-    <link rel="shortcut icon" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg"
-    type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg">
+    <link rel="shortcut icon" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg" type="image/x-icon">
 
     <style>
         body {
@@ -21,157 +19,189 @@
             padding: 0;
             border: 0;
         }
-
-        #root{
-            background-color: <%=theme.background_color%>;
+        
+        #root {
+            <% if (is_home()) {
+                %>background-color: <%=theme.background_color%>;
+                animation: postToHome 1s;
+                -webkit-animation: postToHome 1s;
+                /* Safari and Chrome */
+                <%
+            }
+            %><% if (is_post()) {
+                %>animation: homeToPost 1s;
+                -webkit-animation: homeToPost 1s;
+                /* Safari and Chrome */
+                <%
+            }
+            %>
         }
-
-        #content_header {
-            margin: 0px auto;
-            display: block;
-            padding: 50px 0 0 0;
+        
+        @keyframes homeToPost {
+            from {
+                background: <%=theme.background_color%>;
+            }
+            to {
+                background: white;
+            }
         }
-
+        
+        @-webkit-keyframes homeToPost
+        /* Safari 与 Chrome */
+        
+        {
+            from {
+                background: <%=theme.background_color%>;
+            }
+            to {
+                background: white;
+            }
+        }
+        
+        @keyframes postToHome {
+            from {
+                background: white;
+            }
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+        
+        @-webkit-keyframes postToHome
+        /* Safari 与 Chrome */
+        
+        {
+            from {
+                background: white;
+            }
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+        
         img {
             display: block;
         }
-
+        
         a {
             text-decoration: none;
-            color: #0065b3;
+            color: <%=theme.a_color%>;
         }
-
-        .head {
-            border-radius: 50%;
-            margin: 0px auto;
-            width: 100px;
-        }
-
-        .header_img {
-            width: max-content;
-            margin: 0 auto;
-        }
-
+        
         .te {
             margin: 0 auto;
-            width: 720px;
+            width: 690px;
             height: auto;
             min-height: 720px;
             overflow: hidden;
-            background-color: <%=theme.background_color%>;
-
         }
-
-
+        
         @media(max-width:600px) {
             .te {
                 width: 100%;
             }
-
-            .content {
-                padding: 20px 10px 0 10px !important;
-            }
-
+            .content {}
             .content_bg {
                 padding: 0 0 0 0 !important;
                 border-left: 10px !important;
                 border-right: 10px !important;
             }
         }
-
         /*小 */
+        
         @media(max-width:320px) {
             .te {
                 margin: 0 auto;
                 width: 320px;
             }
         }
-
         /* 兼容ipad横屏 ： */
-        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
             .te {
                 margin: 0 auto;
                 width: 720px;
             }
-
-            .content {
-                padding: 20px 10px 0 10px;
-            }
-
+            .content {}
             .content_bg {
                 padding: 0 0 0 0 !important;
                 border-left: 10px !important;
                 border-right: 10px !important;
             }
         }
-
         /* 兼容ipad竖屏 ： */
-        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+        
+        @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
             .te {
                 margin: 0 auto;
                 width: 720px;
             }
-
-            .content {
-                padding: 20px 10px 0 10px;
-            }
-
+            .content {}
             .content_bg {
                 padding: 0 0 0 0 !important;
                 border-left: 10px !important;
                 border-right: 10px !important;
             }
         }
-
+        
         .content {
             padding: 20px;
-            background-color: <%=theme.content_color%>;
-
+            <% if (is_post()) {
+                %>background-color: <%=theme.content_color%>;
+                <%
+            }
+            %><% if (is_home()) {
+                %>animation: homeToPost 1s;
+                -webkit-animation: homeToPost 1s;
+                /* Safari and Chrome */
+                <%
+            }
+            %>
         }
-
+        
         .content_bg {
             padding: 0 10px 0 10px;
             border-left: 10px;
             border-right: 10px;
             height: 100%;
         }
-
-  
-
+        
         .blog_create {
             padding: 10px;
             text-align: center;
             height: 20px;
         }
-
-        .post{
+        
+        .post {
             background-color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            // -webkit-box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+            -webkit-box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+            // box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
+            box-shadow: 0 2px 10px 0 rgb(0 0 0 / 10%);
+            border-radius: 5px;
         }
-        .posts{
-           
-        }
-
+        
+        .posts {}
+        
         .post_name {
             padding: 10px;
             text-align: center;
-            font-size: large;
-            font-weight: bolder;
+            font-size: 18px;
+            font-weight: 600;
         }
-
+        
         .post_time {
             text-align: right;
             font-size: small;
         }
-
+        
         .readmore {
             text-align: center;
         }
-
-
-
+        
         #footer {
-            background: <%=theme.footer_color%>;;
+            background: <%=theme.footer_color%>;
             padding: 50px 0;
             color: #999;
         }
@@ -185,5 +215,8 @@
 </body>
 <link rel="stylesheet" href="/css/default.min.css">
 <script src="/js/highlight.min.js"></script>
-<script>hljs.highlightAll();</script>
+<script>
+    hljs.highlightAll();
+</script>
+
 </html>
