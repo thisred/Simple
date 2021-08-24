@@ -1,5 +1,5 @@
 <div class="posts">
-    <% site.posts.forEach(function(post){ %>
+    <% page.posts.forEach(function(post){ %>
         <div class="post">
             <div class="content">
                 <a href="/<%- post.path %>">
@@ -11,11 +11,13 @@
                 <div class="content_bg">
                     <%- post.excerpt %>
                 </div>
-                <div class="post_time">
-                    <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
-                </div>
-                <div class="readmore">
-                    <a href="/<%- post.path %>">查看全文</a>
+                <div>
+                    <div class="post_time">
+                        <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
+                    </div>
+                    <div class="readmore">
+                        <a href="/<%- post.path %>">查看全文</a>
+                    </div>
                 </div>
             </div>
         </div>
