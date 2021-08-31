@@ -3,16 +3,30 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
-        <%-config.title%>
-            <%-page.title%>
+        <% if (is_home()) {%>
+            <%-config.title%>
+        <%}%>
+        <% if (is_post()) {%>
+            <%-page.title%> - <%-config.title%>
+        <%}%>
     </title>
-    <meta data-react-helmet="true" name="keywords" content="<%-config.keywords%>">
+    <meta data-react-helmet="true" name="keywords" content="<%-page.title%>,<%-config.keywords%>">
+    <% if (is_home()) {%>
+        <meta name='description' content='<%- config.description %>'>
+    <%}%>
+    <% if (is_post()) {%>
+        <%if (page.excerpt){ %>
+            <meta name="description" content="<%= strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '') %>">
+        <% } else if (page.content){ %>
+            <meta name="description" content="<%= strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150) %>">
+        <% } %>
+    <%}%>
+    <meta http-equiv='content-language' content='<%-config.language%>'>
     <link rel="apple-touch-icon-precomposed" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg">
     <link rel="shortcut icon" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg" type="image/x-icon">
-
+    <link rel="stylesheet" href="/css/cursor.css">
     <style>
         body {
             margin: 0;
@@ -185,8 +199,6 @@
         .post_name {
             padding: 10px;
             text-align: center;
-            font-size: 18px;
-            font-weight: 600;
         }
         
         .post_time {
