@@ -5,35 +5,35 @@
                 #header {
                     background-color: <%=theme.header_color%>;
                 }
-                
+
                 #header-outer {
                     flex: auto;
                 }
-                
+
                 #header-inner {
                     margin: auto 0;
                     padding: 10px;
                 }
-                
+
                 #header-inner a {
                     padding: 10px;
                 }
-                
+
                 #header-title {
                     display: inherit;
                 }
-                
+
                 #logo-wrap {
                     font-size: 24px;
                     font-weight: 800;
                 }
-                
+
                 #content_header {
                     margin: 0px auto;
                     display: block;
-                    margin: 50px 0 0 0;
+                    height: 250px;
                 }
-                
+
                 .head {
                     border-radius: 50%;
                     width: 72px;
@@ -46,55 +46,59 @@
                     left: 0;
                     right: 0;
                 }
-                
+
                 .header_img {
-                    width: max-content;
                     margin: 0 auto;
                     height: 100px;
                     width: 100px;
                     position: relative;
                 }
-                
+
                 .head:hover {
                     width: 100px;
                     height: 100px;
                 }
             </style>
             <div id="header-outer" class="outer">
-                <!-- <div id="header-title" class="inner">
-                    <div id="logo-wrap">
-                        <a href="/" id="logo">
-                            <%-config.title%>
-                        </a>
-                    </div>
-                </div> -->
                 <div id="header-inner" class="inner">
                     <nav id="main-nav">
                         <% if (theme.menus.主页) { %>
-                            <a class="main-nav-link" href="<%= theme.menus.主页 %>">Home</a>
+                            <a class="main-nav-link" href="<%= theme.menus.主页 %>">主页</a>
                             <% } %>
                                 <% if (theme.menus.关于) { %>
-                                    <a class="main-nav-link" href="<%= theme.menus.关于 %>">About</a>
+                                    <a class="main-nav-link" href="<%= theme.menus.关于 %>">关于</a>
                                     <% } %>
                                         <% if (theme.links.github) { %>
                                             <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
                                             <% } %>
                                                 <% if (theme.links.github) { %>
-                                                    <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQGroup</a>
+                                                    <a class="main-nav-link"
+                                                        href="<%= theme.links.qqgroup %>">QQ群</a>
                                                     <% } %>
 
                     </nav>
                 </div>
-            </div>
-            <div id="content_header">
-                <div class="header_img">
-                    <a href="/">
-                        <img src="<%- theme.head_img %>" alt="这是头像" class="head">
-                    </a>
-                </div>
-                <div class="blog_create">
-                    <%- config.title %> | 
-                    <%- config.subtitle %>
+                <div id="content_header">
+
+                    <div class="wrapper">
+                        <div class="blog_create">
+                            <%- config.title %> |
+                                <%- config.subtitle %>
+                        </div>
+                        <div class="header_img">
+                            <a href="/">
+                                <img src="<%- theme.head_img %>" alt="这是头像" class="head">
+                            </a>
+                        </div>
+                        <div class="tagcloud">
+                            <% site.tags.forEach(function(a){ %>
+                                <a href="/<%-a.path %>">
+                                    <%-a.name %>
+                                </a>
+                                <% }); %>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </header>

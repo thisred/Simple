@@ -1,25 +1,60 @@
-<div class="posts">
-    <% page.posts.forEach(function(post){ %>
-        <div class="post">
-            <div class="content">
-                <a href="/<%- post.path %>">
-                    <div class="post_name">
-                        <h3><%- post.title %></h3>
-                    </div>
-                </a>
+<article class="main">
+    <style>
+        #root {
+            background-color: <%=theme.background_color%>;
+            animation: postToHome 1s;
+            -webkit-animation: postToHome 1s;
+            /* Safari and Chrome */
+        }
 
-                <div class="content_bg">
-                    <%- post.excerpt %>
-                </div>
-                <div>
-                    <div class="post_time">
-                        <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
+        @keyframes postToHome {
+            from {
+                background: white;
+            }
+
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+
+        @-webkit-keyframes postToHome
+
+        /* Safari 与 Chrome */
+            {
+            from {
+                background: white;
+            }
+
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+    </style>
+    <div class="posts">
+        <% page.posts.forEach(function(post){ %>
+            <div class="post">
+                <div class="content">
+                    <a href="/<%- post.path %>">
+                        <div class="post_name">
+                            <h3>
+                                <%- post.title %>
+                            </h3>
+                        </div>
+                    </a>
+
+                    <div class="content_bg">
+                        <%- post.excerpt %>
                     </div>
-                    <div class="readmore">
-                        <a href="/<%- post.path %>">查看全文</a>
+                    <div>
+                        <div class="post_time">
+                            <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
+                        </div>
+                        <div class="readmore">
+                            <a href="/<%- post.path %>">查看全文</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <% }); %>
-</div>
+            <% }); %>
+    </div>
+</article>
