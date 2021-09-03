@@ -1,30 +1,28 @@
 <article class="main">
     <style>
         #root {
+            background: white;
             animation: homeToPost 1s;
             -webkit-animation: homeToPost 1s;
             /* Safari and Chrome */
-
         }
-
+        
         @keyframes homeToPost {
             from {
                 background: <%=theme.background_color%>;
             }
-
             to {
                 background: white;
             }
         }
-
+        
         @-webkit-keyframes homeToPost
         /* Safari 与 Chrome */
-
-            {
+        
+        {
             from {
                 background: <%=theme.background_color%>;
             }
-
             to {
                 background: white;
             }
@@ -37,12 +35,12 @@
             position: relative;
             left: 2em;
         }
-
+        
         .toc-article .toc-title {
             padding-bottom: 0.8em;
             font-weight: bold;
         }
-
+        
         .toc {
             font-size: 0.8em;
             float: right;
@@ -50,40 +48,41 @@
             margin-block-end: 0;
             padding-inline-start: 20px;
         }
-
+        
         .toc li {
             list-style-type: none
         }
-
+        
         .toc ol {
             margin: 0;
         }
-
+        
         .toc .toc-child {
             padding-left: 1.5em
         }
     </style>
+    <div class="te">
+        <div class="content">
+            <div class="post_name">
+                <h1>
+                    <%- page.title%>
+                </h1>
+            </div>
 
-    <div class="content">
-        <div class="post_name">
-            <h1>
-                <%- page.title%>
-            </h1>
-        </div>
 
-
-        <div class="content_bg">
-            <% if (is_post()) {%>
-                <div class="post_toc">
-                    <%- toc(page.content); %>
-                </div>
-                <%}%>
-                    <%- page.content %>
-        </div>
-        <div class="post_time">
-            <% if (is_post()) {%>
-                <%- date(page.date, "YYYY年MM月DD日 HH:mm" )%>
+            <div class="content_bg">
+                <% if (is_post()) {%>
+                    <div class="post_toc">
+                        <%- toc(page.content); %>
+                    </div>
                     <%}%>
+                        <%- page.content %>
+            </div>
+            <div class="post_time">
+                <% if (is_post()) {%>
+                    <%- date(page.date, "YYYY年MM月DD日 HH:mm" )%>
+                        <%}%>
+            </div>
         </div>
     </div>
 </article>

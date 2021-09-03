@@ -1,60 +1,47 @@
 <article class="main">
-    <style>
-        #root {
-            background-color: <%=theme.background_color%>;
-            animation: postToHome 1s;
-            -webkit-animation: postToHome 1s;
-            /* Safari and Chrome */
-        }
+    <div class="l-wrapper" data-js="site-wrap">
+        <main class="">
+            <div class="panel-collection" data-modular-content-collection="">
+                <section class="panel s-wrapper site-panel site-panel--hero_row" data-index="1" data-js="panel" data-type="hero_row" data-modular-content="">
+                    <div class="l-container l-container--large">
+                        <div class="s-list s-list--full">
+                            <ul class="s-content s-list__content">
+                                <% page.posts.forEach(function(post){ %>
+                                    <li class="s-list__item">
+                                        <a class="c-card__link" href="/<%- post.path %>" aria-label="Read more">
+                                            <div class="c-card c-card--article c-card--onwhite c-card--fifty_fifty">
+                                                <div class="c-card__header">
+                                                    <div class="c-image c-image__overlay">
+                                                        <img src="<%- post.img%>" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="c-card__content-wrap">
+                                                    <div class="c-card__content">
+                                                        <div class="c-card__date">
+                                                            <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
+                                                        </div>
+                                                        <h3 class="c-card__title">
+                                                            <%- post.title %>
+                                                        </h3>
 
-        @keyframes postToHome {
-            from {
-                background: white;
-            }
+                                                        <div class="c-card__cta" aria-hidden="true">
+                                                            <% post.tags.forEach(function(tag){ %>
+                                                                <%= tag.name %>
+                                                                    <% });%>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
 
-            to {
-                background: <%=theme.background_color%>;
-            }
-        }
-
-        @-webkit-keyframes postToHome
-
-        /* Safari 与 Chrome */
-            {
-            from {
-                background: white;
-            }
-
-            to {
-                background: <%=theme.background_color%>;
-            }
-        }
-    </style>
-    <div class="posts">
-        <% page.posts.forEach(function(post){ %>
-            <div class="post">
-                <div class="content">
-                    <a href="/<%- post.path %>">
-                        <div class="post_name">
-                            <h3>
-                                <%- post.title %>
-                            </h3>
-                        </div>
-                    </a>
-
-                    <div class="content_bg">
-                        <%- post.excerpt %>
-                    </div>
-                    <div>
-                        <div class="post_time">
-                            <%- date(post.date, "YYYY-MM-DD HH:mm" ) %>
-                        </div>
-                        <div class="readmore">
-                            <a href="/<%- post.path %>">查看全文</a>
+                                    </li>
+                                    <% }); %>
+                            </ul>
                         </div>
                     </div>
-                </div>
+                </section>
             </div>
-            <% }); %>
+        </main>
     </div>
+
 </article>
