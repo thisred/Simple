@@ -1,8 +1,37 @@
 <article class="main">
+    <style>
+        .main {
+            background-color: <%=theme.background_color%>;
+            animation: postToHome 1s;
+            -webkit-animation: postToHome 1s;
+            /* Safari and Chrome */
+        }
+        
+        @keyframes postToHome {
+            from {
+                background: white;
+            }
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+        
+        @-webkit-keyframes postToHome
+        /* Safari 与 Chrome */
+        
+        {
+            from {
+                background: white;
+            }
+            to {
+                background: <%=theme.background_color%>;
+            }
+        }
+    </style>
     <div class="l-wrapper" data-js="site-wrap">
         <main class="">
             <div class="panel-collection" data-modular-content-collection="">
-                <section class="panel s-wrapper site-panel site-panel--hero_row" data-index="1" data-js="panel" data-type="hero_row" data-modular-content="">
+                <section class="panel s-wrapper site-panel" data-index="1" data-js="panel" data-type="hero_row" data-modular-content="">
                     <div class="l-container l-container--large">
                         <div class="s-list s-list--full">
                             <ul class="s-content s-list__content">
