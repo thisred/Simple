@@ -19,21 +19,28 @@
         <%}%>
             <% if (is_post()) {%>
                 <%if (page.excerpt){ %>
-                    <meta name="description" content="<%= strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '') %>">
+                    <meta name="description"
+                        content="<%= strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '') %>">
                     <% } else if (page.content){ %>
-                        <meta name="description" content="<%= strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150) %>">
+                        <meta name="description"
+                            content="<%= strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150) %>">
                         <% } %>
                             <%}%>
                                 <meta http-equiv='content-language' content='<%-config.language%>'>
-                                <link rel="apple-touch-icon-precomposed" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg">
-                                <link rel="shortcut icon" href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg" type="image/x-icon">
+                                <link rel="apple-touch-icon-precomposed"
+                                    href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg">
+                                <link rel="shortcut icon"
+                                    href="http://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg"
+                                    type="image/x-icon">
                                 <link rel="stylesheet" href="/css/cursor.css">
                                 <link rel="stylesheet" href="/css/default.min.css">
                                 <link rel="stylesheet" href="/css/tag.css">
                                 <link rel="stylesheet" href="/css/styles.css">
+                                <link rel="stylesheet" href="/css/loaders.css">
+
                                 <script>
                                     var _hmt = _hmt || [];
-                                    (function() {
+                                    (function () {
                                         var hm = document.createElement("script");
                                         hm.src = "https://hm.baidu.com/hm.js?61d743f5bae893c6f6b64f22ca7edb52";
                                         var s = document.getElementsByTagName("script")[0];
@@ -55,6 +62,7 @@
                 <link rel="stylesheet" href="/css/default.min.css">
                 <link rel="stylesheet" href="/css/tag.css">
                 <link rel="stylesheet" href="/css/styles.css">
+                <link rel="stylesheet" href="/css/loaders.css">
 
                 <script src="/js/highlight.min.js"></script>
                 <script src="/js/tagcloud.js"></script>
@@ -63,18 +71,18 @@
                     hljs.highlightAll();
                     AniEnd()
                     var pjax = new Pjax({
-                            elements: "a", //代表点击链接就更新
-                            selectors: [ //代表要更新哪些html元素（dom节点）
-                                ".main", "head"
-                            ]
-                        })
-                        // 开始 PJAX 执行的函数
-                    document.addEventListener('pjax:send', function() {
+                        elements: "a", //代表点击链接就更新
+                        selectors: [ //代表要更新哪些html元素（dom节点）
+                            ".main", "head"
+                        ]
+                    })
+                    // 开始 PJAX 执行的函数
+                    document.addEventListener('pjax:send', function () {
                         GoTop();
                         AniStart();
                     });
                     // PJAX 完成之后执行的函数，可以和上面的重载放在一起
-                    document.addEventListener('pjax:complete', function() {
+                    document.addEventListener('pjax:complete', function () {
                         hljs.highlightAll();
                         AniEnd();
                     });
@@ -93,9 +101,13 @@
                         });
                     }
 
-                    function AniStart() {}
+                    function AniStart() {
+                        document.getElementById("loader").style.display = "block";
+                    }
 
-                    function AniEnd() {}
+                    function AniEnd() {
+                        document.getElementById("loader").style.display = "none";
+                    }
                 </script>
 </body>
 

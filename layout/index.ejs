@@ -6,6 +6,26 @@
             -webkit-animation: postToHome 1s;
             /* Safari and Chrome */
         }
+        .main {
+        background: linear-gradient(
+          135deg,
+          rgb(222, 255, 249),
+          rgb(200, 246, 255),
+          rgb(205, 195, 255),
+          rgb(255, 198, 236)
+        );
+        background-size: 200% 200%;
+        animation: gradient-move 5s ease alternate infinite;
+      }
+
+      @keyframes gradient-move {
+        0% {
+          background-position: 0% 0%;
+        }
+        100% {
+          background-position: 100% 100%;
+        }
+      }
         
         @keyframes postToHome {
             from {
