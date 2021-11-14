@@ -83,7 +83,7 @@ window.tagcloud = (function(win, doc) { // ns
         }
         self.up = setInterval(function() {
             self.update(self);
-        }, 30);
+        }, 10);
     }
 
     //实例
@@ -137,7 +137,7 @@ window.tagcloud = (function(win, doc) { // ns
     };
     TagCloud._getMsSpeed = function(mspeed) { //滚动最大速度
         var speedMap = {
-            slow: 1.5,
+            slow: 2,
             normal: 3,
             fast: 5
         };
@@ -145,9 +145,9 @@ window.tagcloud = (function(win, doc) { // ns
     };
     TagCloud._getIsSpeed = function(ispeed) { //滚动初速度
         var speedMap = {
-            slow: 10,
-            normal: 25,
-            fast: 50
+            slow: 4,
+            normal: 8,
+            fast: 16
         };
         return speedMap[ispeed] || 25;
     };
@@ -222,7 +222,7 @@ window.tagcloud = (function(win, doc) { // ns
                     self.items[j].alpha = 1.5 * per - 0.5;
                     self.items[j].element.style.zIndex = Math.ceil(per * 10 - 5);
                 }
-                self.items[j].element.style.fontSize = self.items[j].fontsize + "px";
+                // self.items[j].element.style.fontSize = self.items[j].fontsize + "px";
                 self.items[j].element.style.left = self.items[j].x + (self.box.offsetWidth - self.items[j].offsetWidth) / 2 + "px";
                 self.items[j].element.style.top = self.items[j].y + (self.box.offsetHeight - self.items[j].offsetHeight) / 2 + "px";
                 self.items[j].element.style.filter = "alpha(opacity=" + 100 * self.items[j].alpha + ")";
@@ -303,8 +303,8 @@ window.tagcloud = (function(win, doc) { // ns
 /*3D标签云*/
 tagcloud({
     selector: ".tagcloud", //元素选择器
-    fontsize: 16, //基本字体大小, 单位px
-    radius: 100, //滚动半径, 单位px
+    fontsize: 12, //基本字体大小, 单位px
+    radius: 80, //滚动半径, 单位px
     mspeed: "normal", //滚动最大速度, 取值: slow, normal(默认), fast
     ispeed: "normal", //滚动初速度, 取值: slow, normal(默认), fast
     direction: 135, //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
