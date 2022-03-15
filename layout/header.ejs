@@ -1,123 +1,59 @@
-<div id="root">
-    <!-- <div class="te"> -->
-    <header id="header">
-        <style>
-            #header {
-                background-color: <%=theme.header_color%>;
-            }
+<header id="header">
+    <div id="header-outer" class="outer">
+        <div id="header-inner" class="inner">
+            <nav id="main-nav">
+                <% if (theme.menus.主页) { %>
+                    <a class="main-nav-link" href="<%= theme.menus.主页 %>">主页</a>
+                <% } %>
+                <% if (theme.menus.关于) { %>
+                    <a class="main-nav-link" href="<%= theme.menus.关于 %>">关于</a>
+                <% } %>
+                <% if (theme.links.github) { %>
+                    <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
+                <% } %>
+                <% if (theme.links.github) { %>
+                    <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQ群</a>
+                <% } %>
 
-            #header-outer {
-                flex: auto;
-            }
-
-            #header-inner {
-                margin: auto 0;
-                padding: 10px;
-            }
-
-            #header-inner a {
-                padding: 10px;
-            }
-
-            #header-title {
-                display: inherit;
-            }
-
-            #logo-wrap {
-                font-size: 24px;
-                font-weight: 800;
-            }
-
-            #content_header {
-                margin: 0px auto;
-                display: block;
-                height: 250px;
-            }
-
-            .head {
-                border-radius: 50%;
-                width: 72px;
-                height: 72px;
-                transition: .3s ease;
-                position: absolute;
-                border: dashed 2px #00178b29;
-                margin: auto;
-                top: 0;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                padding: 2px;
-            }
-
-            .header_img {
-                margin: 0 auto;
-                height: 100px;
-                width: 100px;
-                position: relative;
-            }
-
-            .head:hover {
-                width: 100px;
-                height: 100px;
-            }
-        </style>
-        <div id="header-outer" class="outer">
-            <div id="header-inner" class="inner">
-                <nav id="main-nav">
-                    <% if (theme.menus.主页) { %>
-                        <a class="main-nav-link" href="<%= theme.menus.主页 %>">主页</a>
-                        <% } %>
-                            <% if (theme.menus.关于) { %>
-                                <a class="main-nav-link" href="<%= theme.menus.关于 %>">关于</a>
-                                <% } %>
-                                    <% if (theme.links.github) { %>
-                                        <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
-                                        <% } %>
-                                            <% if (theme.links.github) { %>
-                                                <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQ群</a>
-                                                <% } %>
-
-                </nav>
-            </div>
-            <div id="content_header">
-
-                <div class="wrapper">
-
-                    <div class="header_img">
-                        <a href="/">
-                            <img src="<%- theme.head_img %>" alt="这是头像" class="head">
-                        </a>
-                    </div>
-                    <div class="blog_create">
-                        <%- config.title %> <br><br>
-                            <%- config.subtitle %>
-                    </div>
-                    <div class="tagcloud">
-                        <% site.tags.forEach(function(a){ %>
-                            <a href="/<%-a.path %>">
-                                <%-a.name %>
-                            </a>
-                            <% }); %>
-                    </div>
-                </div>
-
-            </div>
+            </nav>
         </div>
-        <div id="loader">
-            <div class="la-ball-spin-clockwise la-2x" style="margin:0 auto;
+        <div id="content_header">
+            <div class="wrapper">
+                <div class="header_img">
+                    <a href="/">
+                        <img src="<%- theme.head_img %>" alt="这是头像" class="head">
+                    </a>
+                </div>
+                <div class="blog_create">
+                    <%- config.title %> <br><br>
+                    <%- config.subtitle %>
+                </div>
+                <div id="tagcloud" style="display: none">
+                    <% site.tags.forEach(function(a){ %>
+                        <a href="/<%- a.path %>">
+                            <%- a.name %>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="loader">
+        <div class="la-ball-spin-clockwise la-2x" style="margin:0 auto;
                 position: fixed;
                 left: 0;
                 right: 0;
                 z-index: 10;
             ">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
         </div>
-    </header>
+    </div>
+</header>

@@ -1,0 +1,23 @@
+#root {
+    background: rgba(0, 0, 0, 0.05);
+    animation: homeToPost 1s;
+    -webkit-animation: homeToPost 1s;
+}
+
+@keyframes homeToPost {
+    from {
+        background: white;
+    }
+    to {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}
+
+@-webkit-keyframes homeToPost {
+    from {
+        background: white;
+    }
+    to {
+        background: rgba(0, 0, 0, 0.05);
+    }
+}

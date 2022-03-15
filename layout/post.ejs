@@ -1,59 +1,36 @@
 <article class="main">
-    <style>
-        .toc-article {
-            background: #eee;
-            padding: 1em;
-            position: relative;
-            left: 2em;
-        }
-        
-        .toc-article .toc-title {
-            padding-bottom: 0.8em;
-            font-weight: bold;
-        }
-        
-        .toc {
-            font-size: 0.8em;
-            float: right;
-            margin-block-start: 0;
-            margin-block-end: 0;
-            padding-inline-start: 20px;
-        }
-        
-        .toc li {
-            list-style-type: none
-        }
-        
-        .toc ol {
-            margin: 0;
-        }
-        
-        .toc .toc-child {
-            padding-left: 1.5em
-        }
-    </style>
-    <div class="te">
-        <div class="content">
-            <div class="post_name">
-                <h1>
-                    <%- page.title%>
-                </h1>
-            </div>
-
-
-            <div class="content_bg">
-                <% if (is_post()) {%>
-                    <div class="post_toc">
-                        <%- toc(page.content); %>
-                    </div>
-                    <%}%>
-                        <%- page.content %>
-            </div>
-            <div class="post_time">
-                <% if (is_post()) {%>
-                    <%- date(page.date, "YYYY年MM月DD日 HH:mm" )%>
-                        <%}%>
-            </div>
+    <link rel="stylesheet" href="/css/post.css">
+    <div class="content">
+        <div class="post_name">
+            <h1>
+                <%- page.title %>
+            </h1>
         </div>
+
+        <div class="content_bg">
+            <% if (is_post()) { %>
+                <div class="post_toc">
+                    <%- toc(page.content); %>
+                </div>
+            <% } %>
+            <%- page.content %>
+        </div>
+        <div class="post_time">
+            <% if (is_post()) { %>
+                <%- date(page.date, "YYYY年MM月DD日 HH:mm") %>
+            <% } %>
+        </div>
+        <div id="vcomments"></div>
+        <script>
+            loadScript("https://unpkg.com/valine/dist/Valine.min.js", () => {
+                new Valine({
+                    el: '#vcomments',
+                    app_id: '<%- theme.app_id %>',
+                    app_key: '<%- theme.app_key %>',
+                    placeholder: '说点儿什么吧',
+                    path: '<%- page.path %>',
+                });
+            })
+        </script>
     </div>
 </article>

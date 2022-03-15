@@ -1,30 +1,30 @@
 /*
-修改鼠标指针样式
+修改鼠标指针样式,毛用没有，建议删掉
 */
 
-body {
-    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/Arrow.cur"), auto;
-}
+/*body {*/
+/*    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/Arrow.cur"), auto;*/
+/*}*/
 
-a,
-a * {
-    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/Hand.cur"), auto !important
-}
+/*a,*/
+/*a * {*/
+/*    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/Hand.cur"), auto !important*/
+/*}*/
 
-article h1,
-article h2,
-article h3,
-article h4,
-article h5,
-article h6,
-p {
-    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;
-}
+/*article h1,*/
+/*article h2,*/
+/*article h3,*/
+/*article h4,*/
+/*article h5,*/
+/*article h6,*/
+/*p {*/
+/*    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;*/
+/*}*/
 
-input {
-    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;
-}
+/*input {*/
+/*    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;*/
+/*}*/
 
-code {
-    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;
-}
+/*code {*/
+/*    cursor: url("https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/IBeam.cur"), auto;*/
+/*}*/
