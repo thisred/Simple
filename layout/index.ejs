@@ -1,4 +1,5 @@
 <article class="main">
+    <h1 class="Fuc*" title="首页" aria-label="首页" data-bm="1" style="display: none"></h1>
     <div class="l-wrapper" data-js="site-wrap">
         <div class="panel-collection" data-modular-content-collection="">
             <section class="panel s-wrapper site-panel" data-index="1" data-js="panel" data-type="hero_row"
@@ -17,12 +18,12 @@
                                             </div>
                                             <div class="c-card__content-wrap">
                                                 <div class="c-card__content">
-                                                    <div class="c-card__date">
-                                                        <%- date(post.date, "YYYY-MM-DD HH:mm") %>
-                                                    </div>
                                                     <h3 class="c-card__title">
                                                         <%- post.title %>
                                                     </h3>
+                                                    <div class="c-card__date">
+                                                        <%- date(post.date, "YYYY-MM-DD HH:mm") %>
+                                                    </div>
 
                                                     <div class="c-card__cta" aria-hidden="true">
                                                         <% post.tags.forEach(function(tag){ %>
@@ -40,6 +41,15 @@
                     </div>
                 </div>
             </section>
+        </div>
+    </div>
+    <div id="page">
+        <div class="page-inner">
+            <%- paginator({
+                prev_text: '<span class="fa fa-angle-left"> < </span>',
+                next_text: '<span class="fa fa-angle-right"> > </span>',
+                escape: false
+            }) %>
         </div>
     </div>
 

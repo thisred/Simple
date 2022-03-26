@@ -2,19 +2,12 @@
     <div id="header-outer" class="outer">
         <div id="header-inner" class="inner">
             <nav id="main-nav">
-                <% if (theme.menus.主页) { %>
-                    <a class="main-nav-link" href="<%= theme.menus.主页 %>">主页</a>
-                <% } %>
-                <% if (theme.menus.关于) { %>
-                    <a class="main-nav-link" href="<%= theme.menus.关于 %>">关于</a>
-                <% } %>
-                <% if (theme.links.github) { %>
-                    <a class="main-nav-link" href="<%= theme.links.github %>">Github</a>
-                <% } %>
-                <% if (theme.links.github) { %>
-                    <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQ群</a>
-                <% } %>
-
+                <ul>
+                    <li><a class="main-nav-link" href="/">主页</a></li>
+                    <li><a class="main-nav-link" href="<%= theme.menus.about %>">关于</a></li>
+                    <li><a class="main-nav-link" href="<%= theme.links.github %>">Github</a></li>
+                    <li><a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQ群</a></li>
+                </ul>
             </nav>
         </div>
         <div id="content_header">
@@ -24,9 +17,14 @@
                         <img src="<%- theme.head_img %>" alt="这是头像" class="head">
                     </a>
                 </div>
-                <div class="blog_create">
-                    <%- config.title %> <br><br>
-                    <%- config.subtitle %>
+                <div class="blog_create" style="font-size: 20px">
+                    <div class="blog_owner">
+                        <%- theme.author %>
+                    </div>
+                    <br><br>
+                    <div class="blog_subtitle">
+                        <%- config.subtitle %>
+                    </div>
                 </div>
                 <div id="tagcloud" style="display: none">
                     <% site.tags.forEach(function(a){ %>

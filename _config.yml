@@ -1,12 +1,12 @@
-title: MT
+title: simple
 
 author: thisred
 
 menus: 
-  主页: /
-  关于: /about/
+  about: /about/
 
-head_img: https://q.qlogo.cn/headimg_dl?dst_uin=2391114519&spec=640&img_type=jpg
+site_icon : https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
+head_img: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
 links:
   github: https://github.com/thisred
   qqgroup: https://qm.qq.com/cgi-bin/qm/qr?k=pT1Puvb_7GYijt_sdIjYTclo6q5Z8QXY&jump_from=webapi
@@ -15,3 +15,7 @@ background_color : "#ebebeb"
 content_color : "white"
 footer_color : 
 header_color : 
+
+#Valine
+app_id : 'rLICKIT8RPWXbb3pw3LCGQP3-gzGzoHsz'
+app_key : 'cMOGANyMyQLokd7UTJPunwAi'

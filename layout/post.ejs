@@ -8,17 +8,21 @@
         </div>
 
         <div class="content_bg">
+            <div class="post_info">
+                <div class="post_author"><a href="<%= theme.menus.about %>"><%= theme.author %></a></div>
+                <div class="post_time">
+                    <% if (is_post()) { %>
+                        <%- date(page.date, "YYYY年MM月DD日 HH:mm") %>
+                    <% } %>
+                </div>
+            </div>
+
             <% if (is_post()) { %>
                 <div class="post_toc">
                     <%- toc(page.content); %>
                 </div>
             <% } %>
             <%- page.content %>
-        </div>
-        <div class="post_time">
-            <% if (is_post()) { %>
-                <%- date(page.date, "YYYY年MM月DD日 HH:mm") %>
-            <% } %>
         </div>
         <div id="vcomments"></div>
         <script>

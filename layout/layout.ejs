@@ -7,8 +7,17 @@
     <title>
         <% if (is_home()) { %>
             <%- config.title %>
-        <% } %>
-        <% if (is_post()) { %>
+        <% }else if(is_tag()) { %>
+            <%- page.tag %> -
+            <%- config.title %>
+        <% }else if(is_archive()) { %>
+            <% if(is_month()) { %>
+                <%- page.year %>/<%- page.month %> -
+                <%- config.title %>
+            <% }else if(is_year()) { %>
+                <%- page.year %> -
+                <%- config.title %>
+        <% }}else { %>
             <%- page.title %> -
             <%- config.title %>
         <% } %>
@@ -27,8 +36,8 @@
         <% } %>
     <% } %>
     <meta http-equiv='content-language' content='<%- config.language %>'>
-    <link rel="apple-touch-icon-precomposed" href="<%- theme.head_img %>">
-    <link rel="shortcut icon" href="<%- theme.head_img %>" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="<%- theme.site_icon %>">
+    <link rel="shortcut icon" href="<%- theme.site_icon %>" type="image/x-icon">
     <link rel="stylesheet" href="/css/cursor.css">
     <link rel="stylesheet" href="/css/default.min.css">
     <link rel="stylesheet" href="/css/tag.css">
