@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="/css/post.css">
     <div class="content">
         <div class="post_name">
-            <h1>
+            <h1 id="<%- page.title %>">
                 <%- page.title %>
             </h1>
         </div>
@@ -24,15 +24,14 @@
             <% } %>
             <%- page.content %>
         </div>
-        <div id="vcomments"></div>
+        <div id="waline"></div>
         <script>
-            loadScript("https://unpkg.com/valine/dist/Valine.min.js", () => {
-                new Valine({
-                    el: '#vcomments',
-                    app_id: '<%- theme.app_id %>',
-                    app_key: '<%- theme.app_key %>',
+            loadScript("https://cdn.jsdelivr.net/npm/@waline/client", () => {
+                Waline({
+                    el: '#waline',
+                    avatar: '',
+                    serverURL: 'https://comments.this.red',
                     placeholder: '说点儿什么吧',
-                    path: '<%- page.path %>',
                 });
             })
         </script>

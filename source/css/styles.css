@@ -28,8 +28,6 @@ h3 {
 
 #header {
     background-color: #fff;
-    -webkit-box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
-    box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
 }
 
 #main-nav li {
@@ -61,7 +59,6 @@ h3 {
 #content_header {
     margin: 0px auto;
     display: block;
-    height: 250px;
 }
 
 .head {
@@ -98,14 +95,21 @@ h3 {
     min-height: 720px;
     overflow: hidden;
     background: #fff;
+    padding: 20px;
+    word-wrap: break-word;
 }
 
-@media (max-width: 600px) {
+/*自适应手机端*/
+@media (max-width: 640px) {
+    #header {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    }
+
     .content {
         width: 100%;
-    }
-
-    .content {
+        box-shadow: none;
+        animation: none;
+        -webkit-animation: none;
     }
 
     .content_bg {
@@ -115,26 +119,9 @@ h3 {
     }
 }
 
-
-/*小 */
-
-@media (max-width: 320px) {
-    .content {
-        margin: 0 auto;
-        width: 320px;
-    }
-}
-
-
-/* 兼容ipad横屏 ： */
-
+/* 自适应ipad横屏 ： */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
     .content {
-        margin: 0 auto;
-        width: 720px;
-    }
-
-    .content {
     }
 
     .content_bg {
@@ -144,14 +131,8 @@ h3 {
     }
 }
 
-
-/* 兼容ipad竖屏 ： */
-
+/* 自适应ipad竖屏 ： */
 @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-    .content {
-        margin: 0 auto;
-        width: 720px;
-    }
 
     .content {
     }
@@ -161,12 +142,6 @@ h3 {
         border-left: 10px !important;
         border-right: 10px !important;
     }
-}
-
-.content {
-    padding: 20px;
-    /*border-radius: 12px;*/
-    word-wrap: break-word;
 }
 
 .content * {
@@ -462,7 +437,6 @@ body {
 }
 
 .s-wrapper {
-    padding-top: 20px;
     padding-bottom: 20px;
     position: relative;
     width: 100%;

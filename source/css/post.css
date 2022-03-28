@@ -1,23 +1,43 @@
-#root {
-    background: rgba(0, 0, 0, 0.05);
-    animation: homeToPost 1s;
-    -webkit-animation: homeToPost 1s;
+.content {
+    border-radius: 10px;
+    box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    animation: ShadowEnter 2s;
+    -webkit-animation: ShadowEnter 2s;
 }
 
-@keyframes homeToPost {
+
+@keyframes ShadowEnter {
     from {
-        background: white;
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
     }
     to {
-        background: rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
     }
 }
 
-@-webkit-keyframes homeToPost {
+@-webkit-keyframes ShadowEnter {
     from {
-        background: white;
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
     }
     to {
-        background: rgba(0, 0, 0, 0.05);
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    }
+}
+
+@keyframes ShadowExit {
+    from {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    }
+    to {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
+    }
+}
+
+@-webkit-keyframes ShadowExit {
+    from {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    }
+    to {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
     }
 }

@@ -7,6 +7,7 @@ menus:
 
 site_icon : https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
 head_img: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
+head_background : https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/20191208144518.jpg
 links:
   github: https://github.com/thisred
   qqgroup: https://qm.qq.com/cgi-bin/qm/qr?k=pT1Puvb_7GYijt_sdIjYTclo6q5Z8QXY&jump_from=webapi
@@ -15,7 +16,3 @@ background_color : "#ebebeb"
 content_color : "white"
 footer_color : 
 header_color : 
-
-#Valine
-app_id : 'rLICKIT8RPWXbb3pw3LCGQP3-gzGzoHsz'
-app_key : 'cMOGANyMyQLokd7UTJPunwAi'
