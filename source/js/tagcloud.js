@@ -5,7 +5,7 @@
  * */
 
 
-window.tagcloud = (function(win, doc) { // ns
+window.tagcloud = (function (win, doc) { // ns
     // 判断对象
     function isObject(obj) {
         return Object.prototype.toString.call(obj) === '[object Object]';
@@ -40,16 +40,16 @@ window.tagcloud = (function(win, doc) { // ns
         self.index = -1;
 
         //鼠标移入
-        TagCloud._on(self.box, 'mouseover', function() {
+        TagCloud._on(self.box, 'mouseover', function () {
             self.active = true;
         });
         //鼠标移出
-        TagCloud._on(self.box, 'mouseout', function() {
+        TagCloud._on(self.box, 'mouseout', function () {
             self.active = false;
         });
 
         //鼠标在内移动
-        TagCloud._on(self.keep ? win : self.box, 'mousemove', function(ev) {
+        TagCloud._on(self.keep ? win : self.box, 'mousemove', function (ev) {
             var oEvent = win.event || ev;
             var boxPosition = self.box.getBoundingClientRect();
             self.mouseX = (oEvent.clientX - (boxPosition.left + self.box.offsetWidth / 2)) / 5;
@@ -60,12 +60,12 @@ window.tagcloud = (function(win, doc) { // ns
             self.items[j].element.index = j;
 
             //鼠标移出子元素,当前元素静止放大
-            self.items[j].element.onmouseover = function() {
+            self.items[j].element.onmouseover = function () {
                 self.index = this.index;
             };
 
             //鼠标移出子元素,当前元素继续滚动
-            self.items[j].element.onmouseout = function() {
+            self.items[j].element.onmouseout = function () {
                 self.index = -1;
             };
         }
@@ -81,7 +81,7 @@ window.tagcloud = (function(win, doc) { // ns
             self.items[j].element.style.position = "absolute";
             self.items[j].element.style.zIndex = j + 1;
         }
-        self.up = setInterval(function() {
+        self.up = setInterval(function () {
             self.update(self);
         }, 10);
     }
@@ -89,7 +89,7 @@ window.tagcloud = (function(win, doc) { // ns
     //实例
     TagCloud.boxs = []; //实例元素数组
     // 静态方法们
-    TagCloud._set = function(element) {
+    TagCloud._set = function (element) {
         if (TagCloud.boxs.indexOf(element) == -1) { //ie8不支持数组的indexOf方法
             return true;
         }
@@ -97,7 +97,7 @@ window.tagcloud = (function(win, doc) { // ns
 
     //添加数组IndexOf方法
     if (!Array.prototype.indexOf) {
-        Array.prototype.indexOf = function(elt /*, from*/ ) {
+        Array.prototype.indexOf = function (elt /*, from*/) {
             var len = this.length >>> 0;
             var from = Number(arguments[1]) || 0;
             from = (from < 0) ?
@@ -115,7 +115,7 @@ window.tagcloud = (function(win, doc) { // ns
     }
 
 
-    TagCloud._getConfig = function(config) {
+    TagCloud._getConfig = function (config) {
         var defaultConfig = { //默认值
             fontsize: 16, //基本字体大小, 单位px
             radius: 60, //滚动半径, 单位px
@@ -135,7 +135,7 @@ window.tagcloud = (function(win, doc) { // ns
 
         return defaultConfig; // 配置 Merge
     };
-    TagCloud._getMsSpeed = function(mspeed) { //滚动最大速度
+    TagCloud._getMsSpeed = function (mspeed) { //滚动最大速度
         var speedMap = {
             slow: 2,
             normal: 3,
@@ -143,7 +143,7 @@ window.tagcloud = (function(win, doc) { // ns
         };
         return speedMap[mspeed] || 3;
     };
-    TagCloud._getIsSpeed = function(ispeed) { //滚动初速度
+    TagCloud._getIsSpeed = function (ispeed) { //滚动初速度
         var speedMap = {
             slow: 4,
             normal: 8,
@@ -151,7 +151,7 @@ window.tagcloud = (function(win, doc) { // ns
         };
         return speedMap[ispeed] || 25;
     };
-    TagCloud._getSc = function(a, b) {
+    TagCloud._getSc = function (a, b) {
         var l = Math.PI / 180;
         //数组顺序0,1,2,3表示asin,acos,bsin,bcos
         return [
@@ -162,7 +162,7 @@ window.tagcloud = (function(win, doc) { // ns
         ];
     };
 
-    TagCloud._on = function(ele, eve, handler, cap) {
+    TagCloud._on = function (ele, eve, handler, cap) {
         if (ele.addEventListener) {
             ele.addEventListener(eve, handler, cap);
         } else if (ele.attachEvent) {
@@ -176,7 +176,7 @@ window.tagcloud = (function(win, doc) { // ns
     TagCloud.prototype = {
         constructor: TagCloud, // 反向引用构造器
 
-        update: function() {
+        update: function () {
             var self = this,
                 a, b;
 
@@ -188,7 +188,9 @@ window.tagcloud = (function(win, doc) { // ns
             a = -(Math.min(Math.max(-self.mouseY, -self.size), self.size) / self.radius) * self.mspeed;
             b = (Math.min(Math.max(-self.mouseX, -self.size), self.size) / self.radius) * self.mspeed;
 
-            if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) { return; }
+            if (Math.abs(a) <= 0.01 && Math.abs(b) <= 0.01) {
+                return;
+            }
 
             self.lasta = a;
             self.lastb = b;
@@ -230,7 +232,7 @@ window.tagcloud = (function(win, doc) { // ns
             }
         },
 
-        _getItems: function() {
+        _getItems: function () {
             var self = this,
                 items = [],
                 element = self.box.children, // children 全部是Element
@@ -257,11 +259,10 @@ window.tagcloud = (function(win, doc) { // ns
         }
 
 
-
     };
 
     if (!doc.querySelectorAll) { //ie7不支持querySelectorAll，所以要重新定义
-        doc.querySelectorAll = function(selectors) {
+        doc.querySelectorAll = function (selectors) {
             var style = doc.createElement('style'),
                 elements = [],
                 element;
@@ -282,7 +283,7 @@ window.tagcloud = (function(win, doc) { // ns
         };
     }
 
-    return function(options) { // factory
+    return function (options) { // factory
         options = options || {}; // 短路语法
         var selector = options.selector || '.tagcloud', //默认选择class为tagcloud的元素
             elements = doc.querySelectorAll(selector),
@@ -297,7 +298,6 @@ window.tagcloud = (function(win, doc) { // ns
     };
 
 })(window, document);
-
 
 
 // tagcloud({

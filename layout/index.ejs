@@ -7,35 +7,63 @@
                 <div class="l-container l-container--large">
                     <div class="s-list s-list--full">
                         <ul class="s-content s-list__content">
-                            <% page.posts.forEach(function(post){ %>
-                                <li class="s-list__item">
-                                    <a class="c-card__link" href="/<%- post.path %>" aria-label="Read more">
-                                        <div class="c-card c-card--article c-card--onwhite c-card--fifty_fifty">
+                            <%
+                            var is_first = true;
+                            page.posts.forEach(function(post){
+                                if (!is_home() || page.current !== 1) {
+                                    is_first = false;
+                                }
+                            if (is_first){ %>
+                            <li class="s-list__item" style="grid-column: 1/3;grid-row: 1/3;">
+                                <% } else { %>
+                            <li class="s-list__item">
+                                <% } %>
+                                <div class="c-card__link">
+                                    <div class="c-card c-card--article c-card--onwhite c-card--fifty_fifty">
+                                        <a href="/<%- post.path %>" aria-label="Read more" title="Read more">
                                             <div class="c-card__header">
                                                 <div class="c-image c-image__overlay">
                                                     <img src="<%- post.img %>" alt="">
                                                 </div>
                                             </div>
-                                            <div class="c-card__content-wrap">
-                                                <div class="c-card__content">
+                                        </a>
+
+                                        <div class="c-card__content-wrap">
+                                            <div class="c-card__content">
+                                                <a href="/<%- post.path %>" title="Read more" aria-label="Read more">
                                                     <h3 class="c-card__title">
                                                         <%- post.title %>
                                                     </h3>
-                                                    <div class="c-card__date">
-                                                        <%- date(post.date, "YYYY-MM-DD HH:mm") %>
-                                                    </div>
+                                                </a>
 
-                                                    <div class="c-card__cta" aria-hidden="true">
+                                                <div class="c-card__date">
+                                                    <%- date(post.date, "YYYY-MM-DD HH:mm") %>
+                                                </div>
+                                                <% if(is_first){ %>
+                                                    <div class="c-card__text">
+                                                        <%- post.content %>
+                                                    </div>
+                                                <% }is_first = false %>
+                                                <div class="c-card__cta" aria-hidden="true">
+                                                    <div class="comments-count">
+                                                        <i class="comment-svg"></i>
+                                                        <div id="/<%- post.path %>" class="waline-comment-count">
+                                                            <div class="loader"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="post-tags">
                                                         <% post.tags.forEach(function(tag){ %>
-                                                            <%= tag.name %>
+                                                            <div class="post-tag">
+                                                                <%= tag.name %>
+                                                            </div>
                                                         <% }); %>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </a>
-
-                                </li>
+                                    </div>
+                                </div>
+                            </li>
                             <% }); %>
                         </ul>
                     </div>
@@ -53,4 +81,11 @@
         </div>
     </div>
 
+    <script>
+        loadScript("https://cdn.jsdelivr.net/npm/@waline/client", () => {
+            Waline({
+                serverURL: 'https://comments.this.red',
+            });
+        })
+    </script>
 </article>

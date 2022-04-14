@@ -1,9 +1,74 @@
-/* 嗝 */
+:root {
+    --scrollbar-color: #0095c4;
+}
 
-body {
+* {
+    box-sizing: border-box;
+    scrollbar-width: thin;
+    scrollbar-color: var(--scrollbar-color) transparent;
+}
+
+/*— 整个滚动条.*/
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/*滚动条上的按钮 上下箭头—*/
+::-webkit-scrollbar-button {
+
+}
+
+/*滚动条上的滚动滑块.*/
+::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+    border-radius: 10px;
+}
+
+/*— 滚动条轨道.*/
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+/*— 滚动条没有滑块的轨道部分.*/
+::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0);
+}
+
+/*— 当同时有垂直滚动条和水平滚动条时交汇的部分.*/
+::-webkit-scrollbar-corner {
+
+}
+
+/*某些元素的corner部分的部分样式(例:textarea的可拖动按钮).*/
+::-webkit-resizer {
+
+}
+
+
+body,
+div,
+h3,
+header,
+html,
+li,
+main,
+section,
+ul {
     margin: 0;
     padding: 0;
-    border: 0;
+    border: 0
+}
+
+body {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    width: 100%
+}
+
+body {
+    font-weight: 400;
+    font-family: Microsoft SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
+    color: #000
 }
 
 img {
@@ -57,7 +122,7 @@ h3 {
 }
 
 #content_header {
-    margin: 0px auto;
+    margin: 0 auto;
     display: block;
 }
 
@@ -99,50 +164,6 @@ h3 {
     word-wrap: break-word;
 }
 
-/*自适应手机端*/
-@media (max-width: 640px) {
-    #header {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
-    }
-
-    .content {
-        width: 100%;
-        box-shadow: none;
-        animation: none;
-        -webkit-animation: none;
-    }
-
-    .content_bg {
-        padding: 0 0 0 0 !important;
-        border-left: 10px !important;
-        border-right: 10px !important;
-    }
-}
-
-/* 自适应ipad横屏 ： */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
-    .content {
-    }
-
-    .content_bg {
-        padding: 0 0 0 0 !important;
-        border-left: 10px !important;
-        border-right: 10px !important;
-    }
-}
-
-/* 自适应ipad竖屏 ： */
-@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
-
-    .content {
-    }
-
-    .content_bg {
-        padding: 0 0 0 0 !important;
-        border-left: 10px !important;
-        border-right: 10px !important;
-    }
-}
 
 .content * {
     word-wrap: break-word;
@@ -159,7 +180,7 @@ h3 {
 .content img {
     margin: 0 auto;
     border-radius: 15px;
-    max-width: -webkit-fill-available;
+    width: 100%;
 }
 
 .blog_create {
@@ -213,7 +234,6 @@ h3 {
 
 .toc {
     font-size: 0.8em;
-    float: right;
     margin-block-start: 0;
     margin-block-end: 0;
     padding-inline-start: 20px;
@@ -256,7 +276,7 @@ table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #7367ff;
+    background-color: #999;
     color: white;
 }
 
@@ -313,111 +333,8 @@ table th {
     color: #999;
 }
 
+
 /*-----------------------------------------------------------------------------------------------*/
-
-* {
-    box-sizing: border-box
-}
-
-@-ms-viewport {
-    width: device-width
-}
-
-@viewport {
-    width: device-width
-}
-
-header,
-main,
-section {
-    display: block
-}
-
-html {
-    -webkit-text-size-adjust: 100%;
-    -ms-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-    font-size: 100%;
-    -webkit-tap-highlight-color: transparent
-}
-
-body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    font-smoothing: antialiased;
-    min-width: 320px
-}
-
-body,
-div,
-h3,
-header,
-html,
-li,
-main,
-section,
-ul {
-    margin: 0;
-    padding: 0;
-    border: 0
-}
-
-ul {
-    list-style: none
-}
-
-h3 {
-    font-weight: 400;
-    text-rendering: optimizeLegibility
-}
-
-.u-sep-pipe > :after {
-    content: "|";
-    display: inline;
-    padding: 0 3px
-}
-
-.u-sep-slash > :after {
-    content: "/";
-    padding: 0 7px
-}
-
-.u-sep-comma > :after {
-    content: ",";
-    display: inline;
-    padding: 0
-}
-
-.u-sep-dash > :after {
-    content: " - ";
-    display: inline;
-    padding: 0
-}
-
-.u-sep-dot > :after {
-    content: "";
-    height: 5px;
-    width: 5px;
-    border-radius: 50%;
-    background-color: #848484;
-    display: inline-block;
-    position: relative;
-    bottom: 3px;
-    margin: 0 10px
-}
-
-
-body {
-    overflow-x: hidden;
-    overflow-y: scroll;
-    width: 100%
-}
-
-body {
-    font-weight: 400;
-    font-family: Microsoft SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
-    color: #000
-}
 
 .l-wrapper {
     max-width: 2600px;
@@ -456,29 +373,102 @@ body {
 
 .s-list__item {
     display: block;
-    width: 50%;
     padding: 8px;
 }
 
-@media (min-width: 600px) {
+/*自适应手机端*/
+@media (max-width: 768px) {
+    #header {
+        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+    }
+
+    .content {
+        width: 100%;
+        box-shadow: none;
+        animation: none;
+        -webkit-animation: none;
+    }
+
+    .content_bg {
+        padding: 0 0 0 0 !important;
+        border-left: 10px !important;
+        border-right: 10px !important;
+    }
+
+    .s-list__item {
+        width: 50%;
+    }
+
+    .s-list__item:first-child {
+        width: 100%;
+    }
+
+    .s-list__item:last-child {
+        width: 100%;
+    }
+}
+
+
+/* 自适应ipad竖屏 ： */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1180px) and (orientation: portrait) {
+    .content_bg {
+        padding: 0 0 0 0 !important;
+        border-left: 10px !important;
+        border-right: 10px !important;
+    }
+}
+
+/* 自适应ipad横屏 ： */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1180px) and (orientation: landscape) {
+    .content_bg {
+        padding: 0 0 0 0 !important;
+        border-left: 10px !important;
+        border-right: 10px !important;
+    }
+}
+
+@media (min-width: 768px) {
+    .s-list__content {
+        display: -ms-flexbox;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        -ms-flex-align: stretch;
+        align-items: stretch;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        width: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        margin-left: 0;
+        margin-right: 0
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1180px) {
     .s-list__item {
         min-width: auto;
-        width: 45.34884%;
-        margin-left: 2.32558%;
-        margin-right: 2.32558%;
-        padding-right: 0
+        width: 25%;
     }
 }
 
-@media (min-width: 960px) {
-    .s-list__item {
-        width: 28.66279%
+/*大于1180px就转换为grid布局*/
+@media (min-width: 1180px) {
+    .s-list__content {
+        display: grid !important;
+        grid-column: span 6;
+        grid-template-columns: repeat(6, 1fr);
     }
-}
 
-@media (min-width: 1260px) {
+    .s-list--full .s-list__content {
+        width: 100%
+    }
+
     .s-list__item {
-        width: 20.34884%
+        width: 100%;
+    }
+
+    .c-card__text {
+        display: block !important;
     }
 }
 
@@ -498,36 +488,6 @@ body {
     margin-right: 0
 }
 
-@media (min-width: 600px) {
-    .s-list__content {
-        display: -ms-flexbox;
-        display: flex;
-        -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-        -ms-flex-align: stretch;
-        align-items: stretch;
-        -ms-flex-pack: start;
-        justify-content: flex-start;
-        width: 100%;
-        padding-left: 0;
-        padding-right: 0;
-        margin-left: 0;
-        margin-right: 0
-    }
-}
-
-@media (min-width: 960px) {
-    .s-list__content {
-        width: 66.667%
-    }
-}
-
-@media (min-width: 1260px) {
-    .s-list__content {
-        width: 75%
-    }
-}
-
 .s-list__item {
     position: relative
 }
@@ -536,19 +496,13 @@ body {
     margin-right: 0
 }
 
-@media (min-width: 960px) {
-    .s-list--full .s-list__content {
-        width: 100%
-    }
-}
-
 .c-card {
     background-color: #fff;
     position: relative
 }
 
 .c-card__link {
-    border: 2px rgba(0, 0, 0, 0.03) inset;
+    border: 3px rgba(0, 0, 0, 0.03) inset;
     display: block;
     height: 100%;
     box-shadow: 1px 1px 0 rgba(0, 0, 0, .03), -1px 1px 0 rgba(0, 0, 0, .03), 1px -1px 0 rgba(0, 0, 0, .03), -1px -1px 0 rgba(0, 0, 0, .03);
@@ -590,13 +544,41 @@ body {
 .c-card__title {
     font-size: calc(12px + (715vw - 2286px) / 1600);
     line-height: 20px;
-    margin-bottom: 10px;
     margin-top: 0;
     font-family: Microsoft SegoeUI, Helvetica Neue, Helvetica, Arial, sans-serif;
     font-weight: 300;
     overflow: hidden;
     max-width: 100%;
-    max-height: 40px;
+    height: 40px;
+}
+
+.comments-count {
+    padding-right: 20px;
+}
+
+.comment-svg {
+    margin-right: 5px;
+    padding: 10px;
+    background-size: 20px 20px;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-image: url("/css/comments.svg");;
+}
+
+.waline-comment-count {
+    position: absolute;
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
+
+.c-card__text {
+    font-size: calc(1px + (715vw - 2286px) / 1600);
+    color: #000;
+    display: none;
+    margin-bottom: 10px;
+    max-height: 12vw;
+    overflow: hidden;
 }
 
 .c-card__excerpt img {
@@ -612,27 +594,25 @@ body {
 
 .c-card__cta {
     font-size: calc(10px + (200vw - 640px) / 1600);
-    line-height: 10px;
+    line-height: 15px;
     -ms-flex-wrap: nowrap;
     flex-wrap: nowrap;
     -ms-flex-pack: justify;
     justify-content: space-between;
     position: relative;
-    color: #000
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.post-tags {
+
+}
+
+.post-tag {
+    display: inline-block;
 }
 
 .c-card__link .c-card__cta:after {
     display: block;
-}
-
-.c-card__cta:after {
-    background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24.3 18.1'%3E%3Cpath d='M15.1 0l-1 .9 7.5 7.5H0v1.4h21.6l-7.5 7.4 1 .9 9.2-9z'/%3E%3C/svg%3E") no-repeat 50%/16px 12px;
-    content: "";
-    display: none;
-    height: 12px;
-    width: 16px;
-    padding-left: 10px;
-    margin-left: auto
 }
 
 .c-card--article {
@@ -663,7 +643,7 @@ body {
     position: relative;
     display: block;
     content: "";
-    padding-top: 75%;
+    padding-top: 55%;
     box-sizing: border-box
 }
 
@@ -686,7 +666,7 @@ body {
     justify-content: space-between;
     -ms-flex-positive: 1;
     flex-grow: 1;
-    padding: 20px 20px;
+    padding: 15px 15px;
 }
 
 .c-card--article .c-card__title:before {

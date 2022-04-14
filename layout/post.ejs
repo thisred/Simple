@@ -1,5 +1,135 @@
 <article class="main">
     <link rel="stylesheet" href="/css/post.css">
+    <style>
+        #post_toc {
+            position: absolute;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            transition: left .25s ease;
+            width: 240px;
+            line-height: 2;
+            font-size: 1em;
+
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: calc(100vh - 140px);
+        }
+
+        .toc-item {
+            width: 100%;
+        }
+
+        #bookmark {
+            width: fit-content;
+        }
+
+        .book-index {
+            position: sticky;
+            top: 20px;
+            width: 240px;
+        }
+
+        .cur {
+            background: #f0f0f0;
+            font-size: medium;
+        }
+    </style>
+    <% if (is_post() && trim(toc(page.content)) !== "") { %>
+        <div class="book-index">
+            <div id="bookmark">
+                <a href="javascript:void(0)" onclick="bookmark()">
+                    <img src="/css/bookmark.svg" alt="bookmark" style="width: 2em;height: 2em">
+                </a>
+            </div>
+            <div id="post_toc">
+                <%- toc(page.content); %>
+            </div>
+        </div>
+        <script>
+            var post_toc = document.getElementById('post_toc');
+            var isOpen = false;
+            PostToc();
+
+            function PostToc() {
+                if (post_toc != null) {
+                    post_toc.style.left = "-240px"
+                    isOpen = false;
+                }
+            }
+
+            function bookmark() {
+                if (post_toc == null) return;
+                if (!isOpen) {
+                    post_toc.style.left = 0;
+                    isOpen = true;
+                } else {
+                    post_toc.style.left = "-240px";
+                    isOpen = false;
+                }
+            }
+
+            document.body.onclick = function (e) {
+                let elements = document.elementsFromPoint(e.clientX, e.clientY);
+                for (let i = 0; i < elements.length; i++) {
+                    if (elements[i].id === "bookmark") {
+                        return;
+                    }
+                }
+
+                if (isOpen) {
+                    post_toc.style.left = "-240px";
+                    isOpen = false;
+                }
+            }
+            window.addEventListener('scroll', function () {
+                function removeClass(obj, cls) {
+                    if (obj.className === cls) {
+                        obj.className = "";
+                    }
+                }
+
+                function addClass(obj, cls) {
+                    if (obj.className !== cls) {
+                        obj.className = cls;
+                    }
+                }
+
+                let pos = document.documentElement.scrollTop;
+                //todo 放向上的那个箭头
+                // if (pos > 300) {
+                //     document.querySelector('.nav-container').style.display = 'block';
+                // } else {
+                //     document.querySelector('.nav-container').style.display = 'none';
+                // }
+                var menus = document.getElementById("post_toc").getElementsByTagName("li");
+                var items = document.getElementsByClassName("content")[0].querySelectorAll(".headerlink");
+                var currentId = "";
+
+                for (var i = 0; i < items.length; i++) {
+                    var _item = items[i];
+                    var _itemTop = _item.offsetTop;
+                    if (pos > _itemTop - 200) {
+                        currentId = _item.href.split("#")[1];
+                    } else {
+                        break;
+                    }
+                }
+                if (currentId) {
+                    for (var j = 0; j < menus.length; j++) {
+                        var _menu = menus[j];
+                        var _href = _menu.children[0].getAttribute("href").split("#")[1];
+                        if (_href !== currentId) {
+                            removeClass(_menu, "cur");
+                        } else {
+                            addClass(_menu, "cur");
+                        }
+                    }
+                }
+            });
+        </script>
+
+    <% } %>
     <div class="content">
         <div class="post_name">
             <h1 id="<%- page.title %>">
@@ -16,12 +146,6 @@
                     <% } %>
                 </div>
             </div>
-
-            <% if (is_post()) { %>
-                <div class="post_toc">
-                    <%- toc(page.content); %>
-                </div>
-            <% } %>
             <%- page.content %>
         </div>
         <div id="waline"></div>

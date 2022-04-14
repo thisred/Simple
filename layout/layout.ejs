@@ -25,8 +25,7 @@
     <meta data-react-helmet="true" name="keywords" content="<%- page.title %>,<%- config.keywords %>">
     <% if (is_home()) { %>
         <meta name='description' content='<%- config.description %>'>
-    <% } %>
-    <% if (is_post()) { %>
+    <% } else { %>
         <% if (page.excerpt){ %>
             <meta name="description"
                   content="<%= strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '') %>">

@@ -12,6 +12,7 @@
 }
 
 #tagcloud {
+    height: 200px;
     position: relative;
     margin-top: -150px;
     pointer-events: none;
@@ -38,7 +39,7 @@
     box-shadow: 6px 4px 8px 0 rgba(151, 142, 136, .34);
     -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4,Direction=135, Color='#000000')";
     /*兼容ie7/8*/
-    filter: progid: DXImageTransform.Microsoft.Shadow(color='#969696', Direction=125, Strength=9);
+    filter: progid:DXImageTransform.Microsoft.Shadow(color='#969696', Direction=125, Strength=9);
     /*strength是阴影大小，direction是阴影方位，单位为度，可以为负数，color是阴影颜色 （尽量使用数字）使用IE滤镜实现盒子阴影的盒子必须是行元素或以行元素显示（block或inline-block;）*/
 }
 
