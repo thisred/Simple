@@ -1,124 +1,112 @@
 <article class="main">
-    <link rel="stylesheet" href="/css/post.css">
-    <style>
-        #post_toc {
-            position: absolute;
-            background: white;
-            border-radius: 10px;
-            border: 2px solid #ccc;
-            transition: left .25s ease;
-            width: 240px;
-            line-height: 2;
-            font-size: 1em;
-
-            overflow-y: auto;
-            overflow-x: hidden;
-            max-height: calc(100vh - 140px);
-        }
-
-        .toc-item {
-            width: 100%;
-        }
-
-        #bookmark {
-            width: fit-content;
-        }
-
-        .book-index {
-            position: sticky;
-            top: 20px;
-            width: 240px;
-        }
-
-        .cur {
-            background: #f0f0f0;
-            font-size: medium;
-        }
-    </style>
     <% if (is_post() && trim(toc(page.content)) !== "") { %>
         <div class="book-index">
             <div id="bookmark">
                 <a href="javascript:void(0)" onclick="bookmark()">
-                    <img src="/css/bookmark.svg" alt="bookmark" style="width: 2em;height: 2em">
+                    <img src="/css/bookmark.svg" alt="bookmark" class="bookmarkImg">
                 </a>
             </div>
-            <div id="post_toc">
+            <div id="post_toc" class="post_toc--hidden">
                 <%- toc(page.content); %>
             </div>
         </div>
         <script>
+            var deviceWidthFlag = 600;//判断是否是移动端
             var post_toc = document.getElementById('post_toc');
-            var isOpen = false;
             PostToc();
 
             function PostToc() {
                 if (post_toc != null) {
-                    post_toc.style.left = "-240px"
-                    isOpen = false;
+                    if (document.body.clientWidth < deviceWidthFlag) {
+                        if (post_toc.classList.contains("post_toc--hidden")) return;
+                        post_toc.classList.add("post_toc--hidden");
+                    } else {
+                        if (!post_toc.classList.contains("post_toc--hidden")) return;
+                        post_toc.classList.remove("post_toc--hidden");
+                    }
                 }
+            }
+
+            var tocLinks = post_toc.getElementsByTagName('A');
+            for (let i = 0; i < tocLinks.length; i++) {
+                let target = tocLinks[i].getAttribute('href');
+                tocLinks[i].setAttribute('link', target);
+                tocLinks[i].setAttribute('href', 'javascript:void(0)');
+
+                tocLinks[i].addEventListener('click', function () {
+                    let link = tocLinks[i].getAttribute('link');
+                    let targetElement = document.getElementById(decodeURI(link.substring(1)));
+                    tocLinks[i].removeAttribute('href');
+                    let targetElementTop = targetElement.offsetTop;
+                    window.scrollTo({
+                        top: targetElementTop,
+                        behavior: 'smooth'
+                    });
+                });
             }
 
             function bookmark() {
                 if (post_toc == null) return;
-                if (!isOpen) {
-                    post_toc.style.left = 0;
-                    isOpen = true;
+                if (post_toc.classList.contains("post_toc--hidden")) {
+                    post_toc.classList.remove("post_toc--hidden");
                 } else {
-                    post_toc.style.left = "-240px";
-                    isOpen = false;
+                    post_toc.classList.add("post_toc--hidden");
                 }
             }
 
             document.body.onclick = function (e) {
+                if (document.body.clientWidth > deviceWidthFlag) {
+                    return;
+                }
                 let elements = document.elementsFromPoint(e.clientX, e.clientY);
                 for (let i = 0; i < elements.length; i++) {
-                    if (elements[i].id === "bookmark") {
+                    if (elements[i].id === "bookmark" || elements[i].tagName === "A") {
                         return;
                     }
                 }
 
-                if (isOpen) {
-                    post_toc.style.left = "-240px";
-                    isOpen = false;
+                if (!post_toc.classList.contains("post_toc--hidden")) {
+                    post_toc.classList.add("post_toc--hidden");
                 }
             }
-            window.addEventListener('scroll', function () {
-                function removeClass(obj, cls) {
-                    if (obj.className === cls) {
-                        obj.className = "";
-                    }
-                }
+            window.removeEventListener('scroll', BodyScroll);
+            window.addEventListener('scroll', BodyScroll);
 
-                function addClass(obj, cls) {
-                    if (obj.className !== cls) {
-                        obj.className = cls;
-                    }
+            function removeClass(obj, cls) {
+                if (obj.className === cls) {
+                    obj.className = "";
                 }
+            }
 
+            function addClass(obj, cls) {
+                if (obj.className !== cls) {
+                    obj.className = cls;
+                }
+            }
+
+            function BodyScroll() {
                 let pos = document.documentElement.scrollTop;
-                //todo 放向上的那个箭头
-                // if (pos > 300) {
-                //     document.querySelector('.nav-container').style.display = 'block';
-                // } else {
-                //     document.querySelector('.nav-container').style.display = 'none';
-                // }
-                var menus = document.getElementById("post_toc").getElementsByTagName("li");
+                let postToc = document.getElementById("post_toc");
+                if (postToc == null) {
+                    return;
+                }
+                let tocLinks = postToc.getElementsByTagName('A');
                 var items = document.getElementsByClassName("content")[0].querySelectorAll(".headerlink");
                 var currentId = "";
 
                 for (var i = 0; i < items.length; i++) {
                     var _item = items[i];
                     var _itemTop = _item.offsetTop;
-                    if (pos > _itemTop - 200) {
+                    if (pos > _itemTop - 100) {
                         currentId = _item.href.split("#")[1];
                     } else {
                         break;
                     }
                 }
                 if (currentId) {
-                    for (var j = 0; j < menus.length; j++) {
-                        var _menu = menus[j];
-                        var _href = _menu.children[0].getAttribute("href").split("#")[1];
+                    for (var j = 0; j < tocLinks.length; j++) {
+                        var _menu = tocLinks[j];
+                        var _href = _menu.getAttribute("link").split("#")[1];
                         if (_href !== currentId) {
                             removeClass(_menu, "cur");
                         } else {
@@ -126,7 +114,7 @@
                         }
                     }
                 }
-            });
+            }
         </script>
 
     <% } %>

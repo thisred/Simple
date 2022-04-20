@@ -79,6 +79,10 @@
     <%- partial('header') %>
     <%- body %>
     <%- partial('footer') %>
+
+    <div id="CornerButtons" class="CornerAnimayedFlex--hidden" title="回到顶部">
+        <img src="/css/backtotop.svg" alt="返回顶部" class="backToTop">
+    </div>
 </div>
 
 
@@ -86,10 +90,28 @@
 <link rel="stylesheet" href="/css/default.min.css">
 <link rel="stylesheet" href="/css/tag.css">
 <link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/post.css">
 <link rel="stylesheet" href="/css/loaders.css">
 <script src="/js/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
 <script>
+    let cornerButtons = document.querySelector('#CornerButtons');
+    window.addEventListener('scroll', () => {
+        let pos = document.documentElement.scrollTop;
+        if (pos > 300) {
+            cornerButtons.classList.remove('CornerAnimayedFlex--hidden');
+        } else {
+            if (cornerButtons.classList.contains('CornerAnimayedFlex--hidden')) {
+                return;
+            }
+            cornerButtons.classList.add('CornerAnimayedFlex--hidden');
+        }
+    });
+
+    cornerButtons.addEventListener('click', () => {
+        GoTop();
+    });
+
     loadScript("/js/tagcloud.js", () => {
         tagcloud({
             selector: "#tagcloud",
@@ -124,10 +146,12 @@
 
     function GoTop() {
         cancelAnimationFrame(timer);
+        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
+        let speed = oTop / 10;
         timer = requestAnimationFrame(function fn() {
             var oTop = document.body.scrollTop || document.documentElement.scrollTop;
             if (oTop > 0) {
-                document.body.scrollTop = document.documentElement.scrollTop = oTop - 50;
+                document.body.scrollTop = document.documentElement.scrollTop = oTop - speed;
                 timer = requestAnimationFrame(fn);
             } else {
                 cancelAnimationFrame(timer);

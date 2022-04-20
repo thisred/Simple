@@ -1,5 +1,5 @@
 :root {
-    --scrollbar-color: #0095c4;
+    --scrollbar-color: #00aae3;
 }
 
 * {
@@ -11,6 +11,7 @@
 /*— 整个滚动条.*/
 ::-webkit-scrollbar {
     width: 8px;
+    height: 8px;
 }
 
 /*滚动条上的按钮 上下箭头—*/
@@ -44,6 +45,27 @@
 
 }
 
+#CornerButtons {
+    -webkit-transition: height .2s ease;
+    transition: height .2s ease;
+    width: 3em;
+    height: 3em;
+    position: fixed;
+    bottom: 1em;
+    right: 1em;
+}
+
+.backToTop {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 80%);
+    border-radius: 50%;
+}
+
+
+.CornerAnimayedFlex--hidden {
+    height: 0 !important;
+}
 
 body,
 div,
@@ -219,38 +241,6 @@ h3 {
 .readmore {
     text-align: center;
 }
-
-.toc-article {
-    background: #eee;
-    padding: 1em;
-    position: relative;
-    left: 2em;
-}
-
-.toc-article .toc-title {
-    padding-bottom: 0.8em;
-    font-weight: bold;
-}
-
-.toc {
-    font-size: 0.8em;
-    margin-block-start: 0;
-    margin-block-end: 0;
-    padding-inline-start: 20px;
-}
-
-.toc li {
-    list-style-type: none
-}
-
-.toc ol {
-    margin: 0;
-}
-
-.toc .toc-child {
-    padding-left: 1.5em
-}
-
 
 /* table{border-collapse:collapse;border-spacing:0} */
 table {
