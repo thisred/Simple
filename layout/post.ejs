@@ -32,16 +32,6 @@
         <div id="waline"></div>
     </div>
     <script>
-        loadScript("https://cdn.jsdelivr.net/npm/@waline/client", () => {
-            Waline({
-                el: '#waline',
-                avatar: '',
-                serverURL: 'https://comments.this.red',
-                placeholder: '说点儿什么吧',
-            });
-        })
-    </script>
-    <script>
         var deviceWidthFlag = 600;//判断是否是移动端
         var post_toc = document.getElementById('post_toc');
         PostToc();
@@ -49,32 +39,32 @@
         function PostToc() {
             if (post_toc != null) {
                 if (document.body.clientWidth < deviceWidthFlag) {
-                    if (post_toc.classList.contains("post_toc--hidden")) return;
-                    post_toc.classList.add("post_toc--hidden");
-                } else {
-                    if (!post_toc.classList.contains("post_toc--hidden")) return;
+                    if (!post_toc.classList.contains("post_toc--hidden")) {
+                        post_toc.classList.add("post_toc--hidden");
+                    }
+                } else if (post_toc.classList.contains("post_toc--hidden"))
                     post_toc.classList.remove("post_toc--hidden");
+
+                var tocLinks = post_toc.getElementsByTagName('A');
+                for (let i = 0; i < tocLinks.length; i++) {
+                    let target = tocLinks[i].getAttribute('href');
+                    tocLinks[i].setAttribute('link', target);
+                    tocLinks[i].setAttribute('href', 'javascript:void(0)');
+
+                    tocLinks[i].addEventListener('click', function () {
+                        let link = tocLinks[i].getAttribute('link');
+                        let targetElement = document.getElementById(decodeURI(link.substring(1)));
+                        tocLinks[i].removeAttribute('href');
+                        let targetElementTop = targetElement.offsetTop;
+                        window.scrollTo({
+                            top: targetElementTop,
+                            behavior: 'smooth'
+                        });
+                    });
                 }
             }
         }
 
-        var tocLinks = post_toc.getElementsByTagName('A');
-        for (let i = 0; i < tocLinks.length; i++) {
-            let target = tocLinks[i].getAttribute('href');
-            tocLinks[i].setAttribute('link', target);
-            tocLinks[i].setAttribute('href', 'javascript:void(0)');
-
-            tocLinks[i].addEventListener('click', function () {
-                let link = tocLinks[i].getAttribute('link');
-                let targetElement = document.getElementById(decodeURI(link.substring(1)));
-                tocLinks[i].removeAttribute('href');
-                let targetElementTop = targetElement.offsetTop;
-                window.scrollTo({
-                    top: targetElementTop,
-                    behavior: 'smooth'
-                });
-            });
-        }
 
         function bookmark() {
             if (post_toc == null) return;

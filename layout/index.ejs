@@ -46,7 +46,7 @@
                                                 <% }is_first = false %>
                                                 <div class="c-card__cta" aria-hidden="true">
                                                     <div class="comments-count">
-                                                        <i class="comment-svg"></i>
+                                                        <img src="/css/comments.svg" class="comment-svg" alt="comments-count">
                                                         <div id="/<%- post.path %>" class="waline-comment-count">
                                                             <div class="loader"></div>
                                                         </div>
@@ -80,12 +80,4 @@
             }) %>
         </div>
     </div>
-
-    <script>
-        loadScript("https://cdn.jsdelivr.net/npm/@waline/client", () => {
-            Waline({
-                serverURL: 'https://comments.this.red',
-            });
-        })
-    </script>
 </article>

@@ -23,17 +23,18 @@
         <% } %>
     </title>
     <meta data-react-helmet="true" name="keywords" content="<%- page.title %>,<%- config.keywords %>">
-    <% if (is_home()) { %>
-        <meta name='description' content='<%- config.description %>'>
-    <% } else { %>
-        <% if (page.excerpt){ %>
-            <meta name="description"
-                  content="<%= strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '') %>">
-        <% } else if (page.content){ %>
-            <meta name="description"
-                  content="<%= strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150) %>">
-        <% } %>
-    <% } %>
+    <%
+    var description = "";
+    if (is_home()) {
+        description = config.description;
+    } else if (page.excerpt) {
+        description = strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '')
+    } else if (page.content) {
+        description = strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150)
+    }
+    %>
+    <meta name='description' content='<%- description %>'>
+    <meta name="author" content="<%- config.author %>">
     <meta http-equiv='content-language' content='<%- config.language %>'>
     <link rel="apple-touch-icon-precomposed" href="<%- theme.site_icon %>">
     <link rel="shortcut icon" href="<%- theme.site_icon %>" type="image/x-icon">
@@ -80,13 +81,6 @@
     </div>
 </div>
 
-
-<link rel="stylesheet" href="/css/cursor.css">
-<link rel="stylesheet" href="/css/default.min.css">
-<link rel="stylesheet" href="/css/tag.css">
-<link rel="stylesheet" href="/css/styles.css">
-<link rel="stylesheet" href="/css/post.css">
-<link rel="stylesheet" href="/css/loaders.css">
 <script src="/js/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
 <script>
@@ -106,7 +100,7 @@
             behavior: 'smooth'
         });
     }
-    
+
     loadScript("/js/tagcloud.js", () => {
         tagcloud({
             selector: "#tagcloud",
@@ -124,7 +118,7 @@
     var pjax = new Pjax({
         elements: "a", //代表点击链接就更新
         selectors: [ //代表要更新哪些html元素（dom节点）
-            "#main", "head", "#script-hook"
+            "meta", "title", "#main", "#script-hook"
         ]
     })
     // 开始 PJAX 执行的函数
@@ -136,9 +130,10 @@
     document.addEventListener('pjax:complete', () => {
         hljs.highlightAll();
         AniEnd();
+        WalineInit();
         // GoToContent();
     });
-    
+
     function GoToContent() {
         const mainElement = document.getElementById('header').offsetHeight;
         let attribute = mainElement.getAttribute('type');
@@ -156,6 +151,24 @@
 
     function AniEnd() {
         document.getElementById("loader").style.display = "none";
+    }
+
+    loadScript("https://cdn.jsdelivr.net/npm/@waline/client", WalineInit)
+
+    function WalineInit() {
+        let waline = document.getElementById("waline");
+        if (waline) {
+            Waline({
+                el: '#waline',
+                avatar: '',
+                serverURL: 'https://comments.this.red',
+                placeholder: '说点儿什么吧',
+            });
+        } else {
+            Waline({
+                serverURL: 'https://comments.this.red',
+            });
+        }
     }
 </script>
 </body>
