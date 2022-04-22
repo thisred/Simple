@@ -41,6 +41,7 @@
     <link rel="stylesheet" href="/css/default.min.css">
     <link rel="stylesheet" href="/css/tag.css">
     <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/post.css">
     <link rel="stylesheet" href="/css/loaders.css">
 
     <script>
@@ -55,31 +56,25 @@
         function loadScript(url, callback) {
             var script = document.createElement('script');
             script.type = 'text/javascript';
-            script.async = 'async';
+            script.async = true;
             script.src = url;
-            document.body.appendChild(script);
-            if (script.readyState) {//IE
-                script.onreadystatechange = function () {
-                    if (script.readyState == 'complete' || script.readyState == 'loaded') {
-                        script.onreadystatechange = null;
-                        callback();
-                    }
-                }
-            } else {//非IE
-                script.onload = function () {
+            document.getElementById('script-hook').appendChild(script);
+            script.onload = script.onreadystatechange = function () {
+                if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
                     callback();
+                    script.onload = script.onreadystatechange = null;
                 }
-            }
+            };
         }
     </script>
 </head>
 
 <body>
 <div id="root">
+    <div id="script-hook"></div>
     <%- partial('header') %>
     <%- body %>
     <%- partial('footer') %>
-
     <div id="CornerButtons" class="CornerAnimayedFlex--hidden" title="回到顶部">
         <img src="/css/backtotop.svg" alt="返回顶部" class="backToTop">
     </div>
@@ -96,27 +91,27 @@
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
 <script>
     let cornerButtons = document.querySelector('#CornerButtons');
+    cornerButtons.addEventListener('click', BackToTop);
     window.addEventListener('scroll', () => {
-        let pos = document.documentElement.scrollTop;
-        if (pos > 300) {
+        if (document.documentElement.scrollTop > 300) {
             cornerButtons.classList.remove('CornerAnimayedFlex--hidden');
         } else {
-            if (cornerButtons.classList.contains('CornerAnimayedFlex--hidden')) {
-                return;
-            }
             cornerButtons.classList.add('CornerAnimayedFlex--hidden');
         }
     });
 
-    cornerButtons.addEventListener('click', () => {
-        GoTop();
-    });
-
+    function BackToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
     loadScript("/js/tagcloud.js", () => {
         tagcloud({
             selector: "#tagcloud",
             fontsize: 12,
-            radius: 60,
+            radius: 72,
             mspeed: "normal",
             ispeed: "normal",
             direction: 135,
@@ -129,34 +124,30 @@
     var pjax = new Pjax({
         elements: "a", //代表点击链接就更新
         selectors: [ //代表要更新哪些html元素（dom节点）
-            ".main", "head"
+            "#main", "head", "#script-hook"
         ]
     })
     // 开始 PJAX 执行的函数
-    document.addEventListener('pjax:send', function () {
-        GoTop();
+    document.addEventListener('pjax:send', () => {
+        BackToTop();
         AniStart();
     });
     // PJAX 完成之后执行的函数，可以和上面的重载放在一起
-    document.addEventListener('pjax:complete', function () {
+    document.addEventListener('pjax:complete', () => {
         hljs.highlightAll();
         AniEnd();
+        // GoToContent();
     });
-    var timer = null;
-
-    function GoTop() {
-        cancelAnimationFrame(timer);
-        var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-        let speed = oTop / 10;
-        timer = requestAnimationFrame(function fn() {
-            var oTop = document.body.scrollTop || document.documentElement.scrollTop;
-            if (oTop > 0) {
-                document.body.scrollTop = document.documentElement.scrollTop = oTop - speed;
-                timer = requestAnimationFrame(fn);
-            } else {
-                cancelAnimationFrame(timer);
-            }
-        });
+    
+    function GoToContent() {
+        const mainElement = document.getElementById('header').offsetHeight;
+        let attribute = mainElement.getAttribute('type');
+        if (attribute === "post") {
+            window.scrollTo({
+                top: mainElement.offsetTop,
+                behavior: 'smooth'
+            });
+        }
     }
 
     function AniStart() {

@@ -5,8 +5,8 @@ author: thisred
 menus:
   about: /about/
 
-site_icon: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
-head_img: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/icon.ico
+site_icon: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/favicon.ico
+head_img: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/favicon.ico
 head_background: https://cdn.jsdelivr.net/gh/thisred/CDN@master/img/20191208144518.jpg
 links:
   github: https://github.com/thisred
