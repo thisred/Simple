@@ -1,8 +1,8 @@
 .content {
     border-radius: 10px;
-    box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
-    animation: ShadowEnter 0.5s;
-    -webkit-animation: ShadowEnter 0.5s;
+    /*box-shadow: 0 0 5px 5px rgb(0 0 0 / 5%);*/
+    /*animation: ShadowEnter 0.5s;*/
+    /*-webkit-animation: ShadowEnter 0.5s;*/
     margin: 20px auto 36px auto;
     width: 690px;
     height: auto;
@@ -33,37 +33,37 @@
 
 @keyframes ShadowEnter {
     from {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 0%);
     }
     to {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 5%);
     }
 }
 
 @-webkit-keyframes ShadowEnter {
     from {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 0%);
     }
     to {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 5%);
     }
 }
 
 @keyframes ShadowExit {
     from {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 5%);
     }
     to {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 0%);
     }
 }
 
 @-webkit-keyframes ShadowExit {
     from {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 5%);
     }
     to {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 0%);
+        box-shadow: 0 0 5px 5px rgb(0 0 0 / 0%);
     }
 }
 
@@ -127,6 +127,7 @@
     top: 1rem;
     left: 1rem;
     width: 240px;
+    height: 0;
     z-index: 2;
 }
 
