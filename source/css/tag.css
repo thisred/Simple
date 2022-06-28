@@ -1,20 +1,6 @@
-.wrapper {
-    margin: 50px auto;
-    height: 200px;
-}
-
-.wrapper p {
-    padding-top: 150px;
-    line-height: 27px;
-    color: #999;
-    font-size: 14px;
-    text-align: center;
-}
-
 #tagcloud {
-    height: 200px;
+    height: 100%;
     position: relative;
-    margin-top: -150px;
     pointer-events: none;
 }
 

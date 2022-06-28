@@ -44,6 +44,7 @@
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/post.css">
     <link rel="stylesheet" href="/css/loaders.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"/>
 
     <script>
         var _hmt = _hmt || [];
@@ -101,18 +102,6 @@
         });
     }
 
-    loadScript("/js/tagcloud.js", () => {
-        tagcloud({
-            selector: "#tagcloud",
-            fontsize: 12,
-            radius: 72,
-            mspeed: "normal",
-            ispeed: "normal",
-            direction: 135,
-            keep: false
-        });
-        document.getElementById("tagcloud").style.display = "block";
-    })
     hljs.highlightAll();
     AniEnd()
     var pjax = new Pjax({
@@ -153,20 +142,20 @@
         document.getElementById("loader").style.display = "none";
     }
 
-    loadScript("https://cdn.jsdelivr.net/npm/@waline/client", WalineInit)
+    loadScript("https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js", WalineInit)
 
     function WalineInit() {
         let waline = document.getElementById("waline");
         if (waline) {
-            Waline({
+            Waline.init({
                 el: '#waline',
-                avatar: '',
                 serverURL: 'https://comments.this.red',
-                placeholder: '说点儿什么吧',
             });
         } else {
-            Waline({
+            Waline.init({
+                el: '',
                 serverURL: 'https://comments.this.red',
+                comment: true,
             });
         }
     }

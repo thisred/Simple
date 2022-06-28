@@ -10,34 +10,6 @@
                 </ul>
             </nav>
         </div>
-        <div id="content_header">
-            <div class="wrapper">
-                <div class="header_img">
-                    <a href="/">
-                        <img src="<%- theme.head_img %>" alt="这是头像" class="head">
-                    </a>
-                </div>
-                <div class="blog_create" style="font-size: 20px">
-                    <div class="blog_owner">
-                        <%- theme.author %>
-                    </div>
-                    <br><br>
-                    <div class="blog_subtitle">
-                        <%- config.subtitle %>
-                    </div>
-                </div>
-                <div id="tagcloud" style="display: none">
-                    <% site.tags.forEach(function(a){ %>
-                        <a href="/<%- a.path %>">
-                            <%- a.name %>
-                        </a>
-                    <% }); %>
-                </div>
-            </div>
-
-        </div>
     </div>
-    <div id="loader">
-        <div class="loader"></div>
-    </div>
+    <%- partial('loader') %>
 </header>

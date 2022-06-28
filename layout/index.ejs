@@ -47,7 +47,7 @@
                                                 <div class="c-card__cta" aria-hidden="true">
                                                     <div class="comments-count">
                                                         <img src="/css/comments.svg" class="comment-svg" alt="comments-count">
-                                                        <div id="/<%- post.path %>" class="waline-comment-count">
+                                                        <div id="/<%- post.path %>" class="waline-comment-count" data-path="/<%- post.path %>">
                                                             <div class="loader"></div>
                                                         </div>
                                                     </div>
@@ -65,6 +65,15 @@
                                 </div>
                             </li>
                             <% }); %>
+<!--                            <li class="s-list__item">-->
+<!--                                <div id="tagcloud" style="display: none">-->
+<!--                                    <% site.tags.forEach(function(a){ %>-->
+<!--                                        <a href="/<%- a.path %>">-->
+<!--                                            <%- a.name %>-->
+<!--                                        </a>-->
+<!--                                    <% }); %>-->
+<!--                                </div>-->
+<!--                            </li>-->
                         </ul>
                     </div>
                 </div>
