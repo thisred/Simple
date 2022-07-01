@@ -357,7 +357,7 @@ table th {
 /*自适应手机端*/
 @media (max-width: 768px) {
     #header {
-        box-shadow: 0 0 20px 20px rgb(0 0 0 / 5%);
+        box-shadow: 0 0 10px 10px rgb(0 0 0 / 5%);
     }
 
     .content {
@@ -431,6 +431,10 @@ table th {
         min-width: auto;
         width: 25%;
     }
+
+    .s-list__item:first-child {
+        width: 50%;
+    }
 }
 
 /*大于1180px就转换为grid布局*/
@@ -483,7 +487,6 @@ table th {
 }
 
 .c-card {
-    background-color: #fff;
     position: relative
 }
 

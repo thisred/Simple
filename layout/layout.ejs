@@ -55,12 +55,12 @@
             s.parentNode.insertBefore(hm, s);
         })();
 
-        function loadScript(url, callback) {
+        function loadScript(url, callback, elementId) {
             var script = document.createElement('script');
             script.type = 'text/javascript';
             script.async = true;
             script.src = url;
-            document.getElementById('script-hook').appendChild(script);
+            document.getElementById(elementId).appendChild(script);
             script.onload = script.onreadystatechange = function () {
                 if (!this.readyState || this.readyState === 'loaded' || this.readyState === 'complete') {
                     callback();
@@ -73,37 +73,18 @@
 
 <body>
 <div id="root">
-    <div id="script-hook"></div>
+    <%- partial('loader') %>
     <%- partial('header') %>
     <%- body %>
     <%- partial('footer') %>
-    <div id="CornerButtons" class="CornerAnimayedFlex--hidden" title="回到顶部">
-        <img src="/css/backtotop.svg" alt="返回顶部" class="backToTop">
-    </div>
+    <%- partial('sidebar') %>
 </div>
 
 <script src="/js/highlight.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
 <script>
-    let cornerButtons = document.querySelector('#CornerButtons');
-    cornerButtons.addEventListener('click', BackToTop);
-    window.addEventListener('scroll', () => {
-        if (document.documentElement.scrollTop > 300) {
-            cornerButtons.classList.remove('CornerAnimayedFlex--hidden');
-        } else {
-            cornerButtons.classList.add('CornerAnimayedFlex--hidden');
-        }
-    });
-
-    function BackToTop() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
-    }
-
     hljs.highlightAll();
-    AniEnd()
     var pjax = new Pjax({
         elements: "a", //代表点击链接就更新
         selectors: [ //代表要更新哪些html元素（dom节点）
@@ -113,15 +94,29 @@
     // 开始 PJAX 执行的函数
     document.addEventListener('pjax:send', () => {
         BackToTop();
-        AniStart();
+        MyLoaderStart();
     });
     // PJAX 完成之后执行的函数，可以和上面的重载放在一起
     document.addEventListener('pjax:complete', () => {
         hljs.highlightAll();
-        AniEnd();
+        MyLoaderStop();
         WalineInit();
-        // GoToContent();
     });
+
+    var myLoader;
+
+    function MyLoaderStart() {
+        document.getElementById("loader").style.display = "block";
+        myLoader = setTimeout(function () {
+            document.getElementById("myLoader").style.display = "block";
+        }, 1000);
+    }
+
+    function MyLoaderStop() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myLoader").style.display = "none";
+        clearTimeout(myLoader);
+    }
 
     function GoToContent() {
         const mainElement = document.getElementById('header').offsetHeight;
@@ -133,16 +128,6 @@
             });
         }
     }
-
-    function AniStart() {
-        document.getElementById("loader").style.display = "block";
-    }
-
-    function AniEnd() {
-        document.getElementById("loader").style.display = "none";
-    }
-
-    loadScript("https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js", WalineInit)
 
     function WalineInit() {
         let waline = document.getElementById("waline");
@@ -159,6 +144,8 @@
             });
         }
     }
+
+    WalineInit();
 </script>
 </body>
 

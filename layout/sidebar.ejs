@@ -1,0 +1,22 @@
+<div id="CornerButtons" class="CornerAnimayedFlex--hidden" title="回到顶部">
+    <img src="/css/backtotop.svg" alt="返回顶部" class="backToTop">
+</div>
+<script>
+    let cornerButtons = document.querySelector('#CornerButtons');
+    cornerButtons.addEventListener('click', BackToTop);
+    window.addEventListener('scroll', () => {
+        if (document.documentElement.scrollTop > 300) {
+            cornerButtons.classList.remove('CornerAnimayedFlex--hidden');
+        } else {
+            cornerButtons.classList.add('CornerAnimayedFlex--hidden');
+        }
+    });
+
+    function BackToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
+</script>
