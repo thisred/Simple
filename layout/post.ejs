@@ -1,4 +1,4 @@
-<article id="main" type="post">
+<div id="main">
     <% if (is_post() && trim(toc(page.content)) !== "") { %>
         <div class="book-index">
             <div id="bookmark">
@@ -12,138 +12,26 @@
         </div>
     <% } %>
     <div class="content">
-        <div class="post_name">
-            <h1 id="<%- page.title %>">
-                <%- page.title %>
-            </h1>
-        </div>
-
         <div class="content_bg">
-            <div class="post_info">
-
-                <div class="header_img">
-                    <a href="<%= theme.menus.about %>">
-                        <img src="<%- theme.head_img %>" alt="头像无了" class="head">
-                    </a>
-                </div>
-
-                <div class="post_author"><a href="<%= theme.menus.about %>"><%= theme.author %></a></div>
-                <div class="post_time">
-                    <% if (is_post()) { %>
-                        <%- date(page.date, "YYYY年MM月DD日 HH:mm") %>
-                    <% } %>
-                </div>
+            <div class="post_name">
+                <h1 id="<%- page.title %>">
+                    <%- page.title %>
+                </h1>
             </div>
+            <%- partial('author') %>
             <div class="article">
                 <%- page.content %>
             </div>
         </div>
-        <div id="waline"></div>
+        <% if (page.show_updated){ %>
+            <div class="post_update">
+                最后编辑于<%- date(page.updated, "YYYY年MM月DD日") %>
+            </div>
+        <% } %>
+        <% if(page.comments !== false) { %>
+            <div id="waline"></div>
+        <% } %>
+        <%- partial('postnext') %>
     </div>
-    <script>
-        var deviceWidthFlag = 600;//判断是否是移动端
-        var post_toc = document.getElementById('post_toc');
-        PostToc();
-
-        function PostToc() {
-            if (post_toc != null) {
-                if (document.body.clientWidth < deviceWidthFlag) {
-                    if (!post_toc.classList.contains("post_toc--hidden")) {
-                        post_toc.classList.add("post_toc--hidden");
-                    }
-                } else if (post_toc.classList.contains("post_toc--hidden"))
-                    post_toc.classList.remove("post_toc--hidden");
-
-                var tocLinks = post_toc.getElementsByTagName('A');
-                for (let i = 0; i < tocLinks.length; i++) {
-                    let target = tocLinks[i].getAttribute('href');
-                    tocLinks[i].setAttribute('link', target);
-                    tocLinks[i].setAttribute('href', 'javascript:void(0)');
-
-                    tocLinks[i].addEventListener('click', function () {
-                        let link = tocLinks[i].getAttribute('link');
-                        let targetElement = document.getElementById(decodeURI(link.substring(1)));
-                        tocLinks[i].removeAttribute('href');
-                        let targetElementTop = targetElement.offsetTop;
-                        window.scrollTo({
-                            top: targetElementTop,
-                            behavior: 'smooth'
-                        });
-                    });
-                }
-            }
-        }
-
-
-        function bookmark() {
-            if (post_toc == null) return;
-            if (post_toc.classList.contains("post_toc--hidden")) {
-                post_toc.classList.remove("post_toc--hidden");
-            } else {
-                post_toc.classList.add("post_toc--hidden");
-            }
-        }
-
-        document.body.onclick = function (e) {
-            if (document.body.clientWidth > deviceWidthFlag) {
-                return;
-            }
-            let elements = document.elementsFromPoint(e.clientX, e.clientY);
-            for (let i = 0; i < elements.length; i++) {
-                if (elements[i].id === "bookmark" || elements[i].tagName === "A") {
-                    return;
-                }
-            }
-
-            if (!post_toc.classList.contains("post_toc--hidden")) {
-                post_toc.classList.add("post_toc--hidden");
-            }
-        }
-        window.removeEventListener('scroll', BodyScroll);
-        window.addEventListener('scroll', BodyScroll);
-
-        function removeClass(obj, cls) {
-            if (obj.className === cls) {
-                obj.className = "";
-            }
-        }
-
-        function addClass(obj, cls) {
-            if (obj.className !== cls) {
-                obj.className = cls;
-            }
-        }
-
-        function BodyScroll() {
-            let pos = document.documentElement.scrollTop;
-            let postToc = document.getElementById("post_toc");
-            if (postToc == null) {
-                return;
-            }
-            let tocLinks = postToc.getElementsByTagName('A');
-            var items = document.getElementsByClassName("content")[0].querySelectorAll(".headerlink");
-            var currentId = "";
-
-            for (var i = 0; i < items.length; i++) {
-                var _item = items[i];
-                var _itemTop = _item.offsetTop;
-                if (pos > _itemTop - 100) {
-                    currentId = _item.href.split("#")[1];
-                } else {
-                    break;
-                }
-            }
-            if (currentId) {
-                for (var j = 0; j < tocLinks.length; j++) {
-                    var _menu = tocLinks[j];
-                    var _href = _menu.getAttribute("link").split("#")[1];
-                    if (_href !== currentId) {
-                        removeClass(_menu, "cur");
-                    } else {
-                        addClass(_menu, "cur");
-                    }
-                }
-            }
-        }
-    </script>
-</article>
+    <script src="/js/post.js"></script>
+</div>

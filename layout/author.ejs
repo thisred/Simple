@@ -1,0 +1,14 @@
+﻿<div class="post_info">
+    <div class="header_img">
+        <a href="/<%= config.archive_dir %>">
+            <img src="<%- theme.head_img %>" alt="头像未显示成功" class="head">
+        </a>
+    </div>
+    <div class="post_author"><%= theme.author %></div>
+    <br>
+    <div class="post_time">
+        <% if (is_post()) { %>
+            <%- date(page.date, "YYYY年MM月DD日") %>
+        <% } %>
+    </div>
+</div>

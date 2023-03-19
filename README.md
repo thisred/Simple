@@ -1,5 +1,5 @@
-# mytheme
+# Simple theme
 
-hexo博客主题自用
+一个简洁的Hexo主题
 
-博客地址 www.this.red 没有干货都是个人日常
+示例地址 www.this.red

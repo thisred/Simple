@@ -7,8 +7,69 @@
                 <%= config.author || config.title %>
             </div>
             <div>
-                Theme By <a href="https://github.com/thisred/mytheme"><%= theme.title %></a> | Powered By Hexo
+                Theme by <a href="https://github.com/thisred/simple"><%= theme.title %></a> | Powered by Hexo
+            </div>
+            <div>
+                <a class="main-nav-link" href="<%= theme.links.qqgroup %>">QQ群</a>
             </div>
         </div>
     </div>
 </footer>
+
+<script src="/js/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/pjax/pjax.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.js"></script>
+<script>
+    hljs.highlightAll();
+    var pjax = new Pjax({
+        elements: "a",
+        selectors: [
+            "meta", "title", "#main"
+        ]
+    })
+
+    document.addEventListener('pjax:send', () => {
+        BackToTop();
+        MyLoaderStart();
+    });
+
+    document.addEventListener('pjax:complete', () => {
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+        hljs.highlightAll();
+        MyLoaderStop();
+        WalineInit();
+    });
+
+    var myLoader;
+
+    function MyLoaderStart() {
+        document.getElementById("loader").style.display = "block";
+        myLoader = setTimeout(function () {
+            document.getElementById("myLoader").style.display = "block";
+        }, 1000);
+    }
+
+    function MyLoaderStop() {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myLoader").style.display = "none";
+        clearTimeout(myLoader);
+    }
+
+    function WalineInit() {
+        let waline = document.getElementById("waline");
+        if (waline) {
+            Waline.init({
+                el: '#waline',
+                serverURL: 'https://comments.this.red',
+            });
+        } else {
+            Waline.init({
+                el: '',
+                serverURL: 'https://comments.this.red',
+                comment: true,
+            });
+        }
+    }
+
+    WalineInit();
+</script>

@@ -1,0 +1,47 @@
+﻿<head>
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        <% if (is_home()) { %>
+            <%- config.title %>
+        <% }else if(is_tag()) { %>
+            <%- page.tag %> -
+            <%- config.title %>
+        <% }else if(is_archive()) { %>
+            <% if(is_month()) { %>
+                <%- page.year %>/<%- page.month %> -
+                <%- config.title %>
+            <% }else if(is_year()) { %>
+                <%- page.year %> -
+                <%- config.title %>
+            <% }else { %>
+                <%- config.title %>
+        <% }}else { %>
+            <%- page.title %> -
+            <%- config.title %>
+        <% } %>
+    </title>
+    <meta data-react-helmet="true" name="keywords" content="<%- page.title %>,<%- config.keywords %>">
+    <%
+    var description = "";
+    if (is_home()) {
+        description = config.description;
+    } else if (page.excerpt) {
+        description = strip_html(page.excerpt).replace(/^s*/, '').replace(/s*$/, '')
+    } else if (page.content) {
+        description = strip_html(page.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 150)
+    }
+    %>
+    <meta name='description' content='<%- description %>'>
+    <meta name="author" content="<%- config.author %>">
+    <meta http-equiv='content-language' content='<%- config.language %>'>
+    <link rel="apple-touch-icon-precomposed" href="<%- theme.site_icon %>">
+    <link rel="shortcut icon" href="<%- theme.site_icon %>" type="image/x-icon">
+    <link rel="stylesheet" href="/css/cursor.css">
+    <link rel="stylesheet" href="/css/default.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/post.css">
+    <link rel="stylesheet" href="/css/loaders.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.css"/>
+</head>

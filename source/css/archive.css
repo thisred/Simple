@@ -1,0 +1,91 @@
+﻿.archive_img {
+    height: 8em;
+    width: 8em;
+    border-radius: 12px;
+}
+
+.archive_panel {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #00aae3;
+    background-image: url(https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png);
+    background-position: center;
+    display: flex;
+}
+
+.archive_info{
+    margin: 10px;
+}
+
+.archive_name {
+    font-weight: 800;
+    line-height: 24px;
+    font-size: 20px;
+}
+
+.archive_desp {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    line-height: 25px;
+}
+
+.archive_verified {
+    color: rgb(29, 155, 240);
+    display: inline-block;
+    max-width: 20px;
+    max-height: 20px;
+    fill: currentcolor;
+    height: 1.25em;
+}
+
+#archive-body {
+    border-radius: 10px;
+    margin: 20px auto 20px auto;
+    width: 720px;
+    height: auto;
+    min-height: 560px;
+    overflow: hidden;
+    padding: 20px;
+    word-wrap: break-word;
+}
+
+.archive_list_item {
+    list-style: none;
+    display: block;
+    height: 100%;
+    box-shadow: 1px 1px 0 rgba(0, 0, 0, .03), -1px 1px 0 rgba(0, 0, 0, .03), 1px -1px 0 rgba(0, 0, 0, .03), -1px -1px 0 rgba(0, 0, 0, .03);
+    transition: box-shadow .2s cubic-bezier(.43, .195, .02, 1);
+    margin-top: 10px;
+    border-radius: 15px;
+}
+
+.archive_list_item_content {
+    padding: 10px;
+}
+
+.archive-card_title {
+    font-size: calc(12px + (715vw - 2286px) / 1600);
+}
+
+.archive-card_date {
+    font-size: calc(12px + (715vw - 2286px) / 1600);
+}
+
+#archive-body .archive_list_item {
+    border: #999999 1px;
+}
+
+#archive-body .archive_list_item a {
+    color: rgba(66, 66, 66, 0.7);
+}
+
+.archive_list_item {
+    -webkit-box-shadow: 1px 1px 0 rgb(0 0 0 / 3%), -1px 1px 0 rgb(0 0 0 / 3%), 1px -1px 0 rgb(0 0 0 / 3%), -1px -1px 0 rgb(0 0 0 / 3%);
+    box-shadow: 1px 1px 0 rgb(0 0 0 / 3%), -1px 1px 0 rgb(0 0 0 / 3%), 1px -1px 0 rgb(0 0 0 / 3%), -1px -1px 0 rgb(0 0 0 / 3%);
+}
+
+.archive_list_item:hover,
+.archive_list_item:focus {
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 2px 3px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 12px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05), 0 2px 3px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.05), 0 8px 12px rgba(0, 0, 0, 0.05), 0 12px 24px rgba(0, 0, 0, 0.05);
+}
