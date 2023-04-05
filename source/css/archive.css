@@ -1,32 +1,34 @@
-﻿.archive_img {
-    height: 8em;
-    width: 8em;
+﻿.archive_header {
+    width: 100%;
+}
+
+.archive_img {
+    height: 5em;
+    width: 5em;
     border-radius: 12px;
+    margin-top: -2.5em;
 }
 
 .archive_panel {
-    border-bottom-width: 1px;
-    border-bottom-style: solid;
-    border-bottom-color: #00aae3;
-    background-image: url(https://i0.hdslb.com/bfs/space/cb1c3ef50e22b6096fde67febe863494caefebad.png);
-    background-position: center;
-    display: flex;
+    box-shadow: 0 20px 20px 4px rgb(0 0 0 / 5%);
+    margin-bottom: 36px;
 }
 
-.archive_info{
-    margin: 10px;
+.archive_info {
+    padding: 0 1em 1em 1em;
+}
+
+.archive_head {
+    margin-bottom: 10px;
 }
 
 .archive_name {
-    font-weight: 800;
-    line-height: 24px;
+    font-weight: 750;
+    line-height: 35px;
     font-size: 20px;
 }
 
 .archive_desp {
-    margin-top: 20px;
-    margin-bottom: 20px;
-    line-height: 25px;
 }
 
 .archive_verified {
