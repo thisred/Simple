@@ -3,7 +3,7 @@
         <div class="book-index">
             <div id="bookmark">
                 <a href="javascript:void(0)" onclick="bookmark()">
-                    <img src="/css/bookmark.svg" alt="bookmark" style="width: 2em;height: 2em;" class="bookmarkImg">
+                    <img src="/img/bookmark.svg" alt="bookmark" style="width: 2em;height: 2em;" class="bookmarkImg">
                 </a>
             </div>
             <div id="post_toc" class="post_toc--hidden">
@@ -18,12 +18,14 @@
                     <%- page.title %>
                 </h1>
             </div>
-            <%- partial('author') %>
+            <% if (!page.hidden_author) { %>
+                <%- partial('author') %>
+            <% } %>
             <div class="article">
                 <%- page.content %>
             </div>
         </div>
-        <% if (page.show_updated){ %>
+        <% if (page.show_update){ %>
             <div class="post_update">
                 最后编辑于<%- date(page.updated, "YYYY年MM月DD日") %>
             </div>

@@ -1,4 +1,8 @@
-﻿.archive_header {
+﻿#archive_header {
+    min-height: 5.5em;
+}
+
+#archive_header_img {
     width: 100%;
 }
 
@@ -15,7 +19,7 @@
 }
 
 .archive_info {
-    padding: 0 1em 1em 1em;
+    padding: 0 1em 2em 1em;
 }
 
 .archive_head {
@@ -70,7 +74,7 @@
 }
 
 .archive-card_date {
-    font-size: calc(12px + (715vw - 2286px) / 1600);
+    font-size: calc(8px + (715vw - 2286px) / 1600);
 }
 
 #archive-body .archive_list_item {

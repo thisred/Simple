@@ -1,0 +1,26 @@
+﻿#footer-info {
+    line-height: 20px;
+}
+
+.outer {
+    text-align: center;
+    font-size: 14px;
+}
+
+#footer {
+    padding: 50px 0;
+    color: #999;
+}
+
+#contact {
+    padding: 1em;
+}
+
+#contact div {
+    display: inline-block;
+}
+
+#contact img {
+    height: 2rem;
+    width: 2rem;
+}
