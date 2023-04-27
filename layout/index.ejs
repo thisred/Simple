@@ -40,22 +40,25 @@
                                         </div>
                                         <% if(is_first){ %>
                                             <div class="c-card__text">
-                                                <%- post.content%>
-<!--                                                <\%- post.content.substring(0, 400) %\> . . .  不能判断标签闭合-->
-<!--                                                <\%-strip_html(post.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 200) %\> . . .-->
+                                                <%- post.content %>
+                                                <!--                                                <\%- post.content.substring(0, 400) %\> . . .  不能判断标签闭合-->
+                                                <!--                                                <\%-strip_html(post.content).replace(/^s*/, '').replace(/s*$/, '').substring(0, 200) %\> . . .-->
                                             </div>
                                             <div class="hide-area">
 
                                             </div>
                                         <% }is_first = false %>
                                         <div class="c-card__cta" aria-hidden="true">
-                                            <div class="comments-count">
-                                                <img src="/img/comments.svg" class="comment-svg"
-                                                     alt="comments-count">
-                                                <div id="/<%- post.path %>" class="waline-comment-count"
-                                                     data-path="/<%- post.path %>">
+                                            <% if (post.comments){ %>
+                                                <div class="comments-count">
+                                                    <img src="/img/comments.svg" class="comment-svg"
+                                                         alt="comments-count">
+                                                    <div id="/<%- post.path %>" class="waline-comment-count"
+                                                         data-path="/<%- post.path %>">
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            <% } %>
+
                                             <div class="post-tags">
                                                 <% post.tags.forEach(function(tag){ %>
                                                     <div class="post-tag">
